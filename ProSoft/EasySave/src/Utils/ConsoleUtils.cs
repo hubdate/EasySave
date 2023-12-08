@@ -1,3 +1,5 @@
+using EasySave.src.Models.Data;
+
 using System.Collections.Generic;
 using Spectre.Console;
 
@@ -47,6 +49,26 @@ namespace EasySave.src.Utils {
                     )
                 )
             );
+        }
+
+
+
+        public static void CreateProgressBar(Save s) {
+            AnsiConsole.Progress()
+                .Columns(
+                    new TaskDescriptionColumn(),
+                    new ProgressBarColumn(),
+                    new PercentageColumn(),
+                    new RemainingTimeColumn(),
+                    new SpinnerColumn()
+                )
+                .Start( context => {
+                    var progress = context.AddTask($"Copying files...", maxValue: s.sourceDirectory.GetSize());
+                    while (!context.IsFinished) {
+                        Thread.Sleep(1000);
+                        progress.Value = s.GetSizeCopied();
+                    }
+                });
         }
     }
 }
