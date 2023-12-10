@@ -36,18 +36,6 @@ namespace EasySave.Resources {
             }
         }
 
-        public static string Confirm_Yes {
-            get {
-                return ResourceManager.GetString("Confirm.Yes", resourceCulture);
-            }
-        }
-
-        public static string Confirm_No {
-            get {
-                return ResourceManager.GetString("Confirm.No", resourceCulture);
-            }
-        }
-
         public static string Language_fr_FR {
             get {
                 return ResourceManager.GetString("Language.fr-FR", resourceCulture);

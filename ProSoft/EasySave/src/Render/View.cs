@@ -205,21 +205,6 @@ namespace EasySave.src.Render {
             RenderHome();
         }
 
-        private HashSet<Save> PromptSave(bool multi = false)
-        {
-            HashSet<string> saves = new HashSet<string>();
-            //Ask for multi or single save
-            if (multi)
-                saves = ConsoleUtils.ChooseMultipleActions(Resource.SaveMenu_Title, _vm.GetSaves(), null);
-            else
-            {
-                string save = ConsoleUtils.ChooseAction(Resource.SaveMenu_Title, _vm.GetSaves(), Resource.Forms_Back);
-                if (save != Resource.Forms_Back && save != Resource.Forms_Exit)
-                    saves.Add(save);
-            }
-            return _vm.GetSavesByUuid(saves);
-        }
-
         internal void Exit(int errno = 0) {
             this._vm.StopAllSaves();
             Environment.Exit(errno);

@@ -75,6 +75,14 @@ namespace EasySave.src.Utils {
             );
         }
 
+        public static bool AskConfirm(bool withoutChoice = false)
+        {
+            if (withoutChoice)
+                return ChooseAction("", new HashSet<string>() { Resource.Forms_Back }, null) == Resource.Confirm_Yes;
+            else
+                return ChooseAction(Resource.Confirm, new HashSet<string>() { Resource.Confirm_Yes, Resource.Confirm_No }, null) == Resource.Confirm_Yes;
+        }
+
         public static void WriteError(string errorMessage) {
             AnsiConsole.MarkupLine($"[red]{errorMessage}[/]");
         }
