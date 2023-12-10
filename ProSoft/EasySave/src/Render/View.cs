@@ -10,9 +10,12 @@ using System.Text;
 using System.Threading;
 
 using Spectre.Console;
+using Spectre.Console.Json;
 
 using EasySave.src.Utils;
 using System.ComponentModel;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace EasySave.src.Render {
     class View {
@@ -30,7 +33,7 @@ namespace EasySave.src.Render {
             RenderHome();
         }
 
-        private void RenderHome(string message = null) {
+        private void RenderHome(string? message = null) {
             AnsiConsole.Clear();
             AnsiConsole.Write( new FigletText("EasySave").Centered().Color(Color.Red) );
             if (message != null) { AnsiConsole.MarkupLine(message); }
@@ -46,6 +49,10 @@ namespace EasySave.src.Render {
                 $"{Resource.Forms_Exit}"
             );
             switch (action) {
+                case var value when value == Resource.HomeMenu_Create:
+                    RenderCreateSave();
+                    break;
+
                 case var value when value == Resource.HomeMenu_ChangeLanguage:
                     RenderChangeLanguage();
                     break;
@@ -60,18 +67,60 @@ namespace EasySave.src.Render {
 
 
         private void RenderCreateSave() {
-            // if (Save.GetSaves().Count >= Save.MAX_SAVES) {
-            //     AnsiConsole.MarkupLine("[red]Le nombre maximum de sauvegardes a été atteint.[/]");
-            //     RenderHome();
-            // }
+            if (Save.GetSaves().Count >= Save.MAX_SAVES) {
+                RenderHome($"[red]{Resource.CreateSave_MaxSaves}[/]");
+            }
 
-            // Save s = this._vm.CreateSave(
-            //     "test", 
-            //     @"D:\GitHub\EasySave\ProSoft\EasySave\", 
-            //     @"D:\GitHub\EasySave\ProSoft\EasySave\", 
-            //     SaveType.FULL
-            // );
-            // RenderHome($"[green]{Resource.CreateSave_Success} ({s._uuid})[/]");
+            string name = ConsoleUtils.Ask($"{Resource.CreateSave_Name}");
+            string src = ConsoleUtils.Ask($"{Resource.CreateSave_SourcePath}");
+            while (!DirectoryUtils.IsValidPath(src)) {
+                ConsoleUtils.WriteError(Resource.Path_Invalid);
+                src = ConsoleUtils.Ask($"{Resource.CreateSave_SourcePath}");
+            }
+
+            string dst = ConsoleUtils.Ask($"{Resource.CreateSave_DestinationPath}");
+            if (!DirectoryUtils.IsValidPath(dst)) {
+                new DirectoryInfo(dst).Create();
+            }
+
+            Dictionary<string, SaveType> DictSaveTypes = new Dictionary<string, SaveType>() {
+                {Resource.CreateSave_Type_Full, SaveType.FULL},
+                {Resource.CreateSave_Type_Differential, SaveType.DIFFERENTIAL}
+            };
+
+            SaveType type = DictSaveTypes[
+                ConsoleUtils.ChooseAction(
+                    $"{Resource.CreateSave_Type}", 
+                    new HashSet<string>(DictSaveTypes.Keys)
+                )
+            ];
+
+            dynamic data = new JObject();
+            data.name = name;
+            data.src = src;
+            data.dst = dst;
+            data.type = type.ToString();
+            ConsoleUtils.WriteJson(Resource.Confirm, new JsonText(data.ToString()));
+            
+            bool askConfirmation = ConsoleUtils.ChooseAction(
+                Resource.Confirm, 
+                new HashSet<string>() {
+                    {Resource.Confirm_Yes},
+                    {Resource.Confirm_No}
+                }
+            ) == Resource.Confirm_Yes;
+
+            string message;
+            if (askConfirmation) {
+                Save s = this._vm.CreateSave(name, src, dst, type);
+                message = $"[green]{Resource.CreateSave_Success} ({s._uuid})[/]";
+            }
+            else {
+                message = $"[red]Save creation aborted![/]";
+            }
+
+            RenderHome(message);
+
         }
 
         private void RenderChangeLanguage() {

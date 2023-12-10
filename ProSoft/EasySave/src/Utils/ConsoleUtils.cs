@@ -2,6 +2,8 @@ using EasySave.src.Models.Data;
 
 using System.Collections.Generic;
 using Spectre.Console;
+using Spectre.Console.Json;
+using Newtonsoft.Json;
 
 
 namespace EasySave.src.Utils {
@@ -15,7 +17,7 @@ namespace EasySave.src.Utils {
         /// <param name="options">The list of options</param>
         /// <param name="lastOption">The last option of the prompt (e.g. back to menu)</param>
         /// <returns>The selected option</returns>
-        public static string ChooseAction(string title, HashSet<string> options, string lastOption) {
+        public static string ChooseAction(string title, HashSet<string> options, string? lastOption = null) {
             if (lastOption != null) { options.Add(lastOption); }
             
             return (
@@ -36,7 +38,7 @@ namespace EasySave.src.Utils {
         /// <param name="options">The list of options</param>
         /// <param name="lastOption">The last option of the prompt (e.g. back to menu)</param>
         /// <returns>The selected options</returns>
-        public static HashSet<string> ChooseMultipleActions(string title, HashSet<string> options, string lastOption) {
+        public static HashSet<string> ChooseMultipleActions(string title, HashSet<string> options, string? lastOption = null) {
             if (lastOption != null) { options.Add(lastOption); }
             
             return (
@@ -51,6 +53,28 @@ namespace EasySave.src.Utils {
             );
         }
 
+        public static void WriteJson(string title, JsonText data, Color? color = null) {
+            AnsiConsole.Write(
+                new Panel(data)
+                    .Header(title)
+                    .Collapse()
+                    .RoundedBorder()
+                    .BorderColor(color ?? Color.Yellow)
+            );
+        }
+
+        public static string Ask(string title, string? errorMessage = null) {
+            return AnsiConsole.Prompt(
+                new TextPrompt<string>(title)
+                    .PromptStyle("blue")
+                    .ValidationErrorMessage(errorMessage ?? "")
+                    .Validate(prompt => !String.IsNullOrEmpty(prompt.Trim()))
+            );
+        }
+
+        public static void WriteError(string errorMessage) {
+            AnsiConsole.MarkupLine($"[red]{errorMessage}[/]");
+        }
 
 
         public static void CreateProgressBar(Save s) {
