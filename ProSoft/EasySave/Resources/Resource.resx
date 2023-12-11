@@ -209,4 +209,12 @@
     <value>Choose an action:</value>
     <comment/>
   </data>
+  <data name="Save.Deleted" xml:space="preserve">
+    <value>Save deleted successfully</value>
+    <comment/>
+  </data>
+  <data name="Save.Undeleted" xml:space="preserve">
+    <value>Delete save aborted!</value>
+    <comment/>
+  </data>
 </root>

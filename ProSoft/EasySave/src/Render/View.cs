@@ -1,5 +1,6 @@
 using EasySave.src.Models.Data;
 using EasySave.Resources;
+using Newtonsoft.Json.Linq;
 
 using System;
 using System.Collections.Generic;
@@ -9,12 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 
-using Spectre.Console;
 using Spectre.Console.Json;
+using Spectre.Console;
 
 using EasySave.src.Utils;
 using System.ComponentModel;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace EasySave.src.Render {
@@ -56,7 +56,9 @@ namespace EasySave.src.Render {
                 case var value when value == Resource.HomeMenu_ChangeLanguage:
                     RenderChangeLanguage();
                     break;
-                
+                case var value when value == Resource.HomeMenu_Delete:
+                    RenderDeleteSave(PromptSave());
+                    break;
                 case var value when value == Resource.Forms_Exit:
                 default:
                     Exit();
@@ -122,6 +124,45 @@ namespace EasySave.src.Render {
             RenderHome(message);
 
         }
+
+        private void RenderDeleteSave(HashSet<Save> saves)
+        {
+            if (saves.Count != 0)
+            {
+                //Get selected save
+                Save s = saves.Single();
+                ConsoleUtils.WriteJson(Resource.Confirm, new JsonText(LogsUtils.SaveToJson(s).ToString()));
+                //Ask confirm
+                string message;
+                if (ConsoleUtils.AskConfirm())
+                {
+                    _vm.DeleteSave(s);
+                    message = $"[green]{Resource.Save_Deleted}[/]";
+                }
+                else {
+                    message = $"[red]{Resource.Save_Undeleted}[/]";
+                }
+                RenderHome(message);
+            }
+            else
+                RenderHome();
+        }
+
+        private HashSet<Save> PromptSave(bool multi = false)
+        {
+            HashSet<string> saves = new HashSet<string>();
+            //Ask for multi or single save
+            if (multi)
+                saves = ConsoleUtils.ChooseMultipleActions(Resource.SaveMenu_Title, _vm.GetSaves(), null);
+            else
+            {
+                string save = ConsoleUtils.ChooseAction(Resource.SaveMenu_Title, _vm.GetSaves(), Resource.Forms_Back);
+                if (save != Resource.Forms_Back && save != Resource.Forms_Exit)
+                    saves.Add(save);
+            }
+            return _vm.GetSavesByUuid(saves);
+        }
+
 
         private void RenderChangeLanguage() {
             string language = ConsoleUtils.ChooseAction(

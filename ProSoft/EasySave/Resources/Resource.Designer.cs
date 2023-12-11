@@ -36,18 +36,6 @@ namespace EasySave.Resources {
             }
         }
 
-        public static string Confirm_Yes {
-            get {
-                return ResourceManager.GetString("Confirm.Yes", resourceCulture);
-            }
-        }
-
-        public static string Confirm_No {
-            get {
-                return ResourceManager.GetString("Confirm.No", resourceCulture);
-            }
-        }
-
         public static string Language_fr_FR {
             get {
                 return ResourceManager.GetString("Language.fr-FR", resourceCulture);
@@ -162,9 +150,39 @@ namespace EasySave.Resources {
             }
         }
 
+        public static string Confirm_Yes {
+            get {
+                return ResourceManager.GetString("Confirm.Yes", resourceCulture);
+            }
+        }
+
+        public static string Confirm_No {
+            get {
+                return ResourceManager.GetString("Confirm.No", resourceCulture);
+            }
+        }
+
         public static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+
+        public static string Save_Deleted {
+            get {
+                return ResourceManager.GetString("Save.Deleted", resourceCulture);
+            }
+        }
+
+        public static string Save_Undeleted {
+            get {
+                return ResourceManager.GetString("Save.Undeleted", resourceCulture);
+            }
+        }
+
+        public static string SaveMenu_Title {
+            get {
+                return ResourceManager.GetString("SaveMenu.Title", resourceCulture);
             }
         }
 
