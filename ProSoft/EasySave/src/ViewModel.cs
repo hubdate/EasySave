@@ -19,6 +19,11 @@ namespace EasySave.src {
             Save.Delete(s._uuid);
         }
 
+        public void EditSave(Save s, string name)
+        {
+            s.Rename(name);
+        }
+
         public HashSet<Save> GetSavesByUuid(HashSet<string> names)
         {
             return new HashSet<Save>(Save.GetSaves().Where(save => names.Contains(save.ToString())).ToList());
