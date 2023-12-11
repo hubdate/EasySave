@@ -213,4 +213,44 @@
     <value>Scegliere un'azione:</value>
     <comment/>
   </data>
+<data name="Save.Deleted" xml:space="preserve">
+    <value>Salvataggio eliminato con successo</value>
+    <comment/>
+</data>
+<data name="Save.Undeleted" xml:space="preserve">
+    <value>Eliminazione del salvataggio annullata!</value>
+    <comment/>
+</data>
+<data name="Save.AlreadyRunning" xml:space="preserve">
+    <value>Il salvataggio è già in esecuzione</value>
+    <comment/>
+</data>
+<data name="Save.Execute" xml:space="preserve">
+    <value>Eseguire il salvataggio?</value>
+    <comment> </comment>
+</data>
+<data name="SaveMenu.Title" xml:space="preserve">
+    <value>I tuoi salvataggi:</value>
+    <comment> </comment>
+</data>
+<data name="Save.Info" xml:space="preserve">
+    <value>Riepilogo del backup:</value>
+    <comment> </comment>
+</data>
+<data name="Exception" xml:space="preserve">
+    <value>Si è verificato un errore, si prega di riavviare l'applicazione.</value>
+    <comment> </comment>
+</data>
+<data name="SelectAll" xml:space="preserve">
+    <value>Seleziona tutto</value>
+    <comment> </comment>
+</data>
+<data name="Save.Renamed" xml:space="preserve">
+    <value>Salvataggio rinominato con successo!</value>
+    <comment/>
+</data>
+<data name="HomeMenu.Load" xml:space="preserve">
+    <value>Carica ed esegui i backup</value>
+    <comment/>
+</data>
 </root>
