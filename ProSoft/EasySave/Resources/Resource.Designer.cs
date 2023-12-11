@@ -30,6 +30,18 @@ namespace EasySave.Resources {
                 resourceCulture = value;
             }
         }
+        
+        public static string Exception {
+            get {
+                return ResourceManager.GetString("Exception", resourceCulture);
+            }
+        }
+
+        public static string SelectAll {
+            get {
+                return ResourceManager.GetString("SelectAll", resourceCulture);
+            }
+        }
 
         public static string Confirm {
             get {
@@ -121,6 +133,12 @@ namespace EasySave.Resources {
             }
         }
 
+        public static string Save_AlreadyRunning {
+            get {
+                return ResourceManager.GetString("Save.AlreadyRunning", resourceCulture);
+            }
+        }
+
         public static string Forms_Back {
             get {
                 return ResourceManager.GetString("Forms.Back", resourceCulture);
@@ -196,6 +214,18 @@ namespace EasySave.Resources {
         public static string Save_Undeleted {
             get {
                 return ResourceManager.GetString("Save.Undeleted", resourceCulture);
+            }
+        }
+
+        public static string Save_Execute {
+            get {
+                return ResourceManager.GetString("Save.Execute", resourceCulture);
+            }
+        }
+
+        public static string Save_Info {
+            get {
+                return ResourceManager.GetString("Save.Info", resourceCulture);
             }
         }
 

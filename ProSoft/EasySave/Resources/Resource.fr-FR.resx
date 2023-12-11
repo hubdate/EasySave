@@ -213,4 +213,44 @@
     <value>Choisir une action:</value>
     <comment/>
   </data>
+  <data name="Save.Deleted" xml:space="preserve">
+    <value>La sauvegarde a été supprimée avec succès</value>
+    <comment/>
+  </data>
+  <data name="Save.Undeleted" xml:space="preserve">
+    <value>La suppression de la sauvegarde a été annulée</value>
+    <comment/>
+  </data>
+  <data name="Save.AlreadyRunning" xml:space="preserve">
+    <value>La sauvegarde est déjà en cours d'exécution</value>
+    <comment/>
+  </data>
+  <data name="Save.Execute" xml:space="preserve">
+    <value>Exécuter la sauvegarde ?</value>
+    <comment> </comment>
+  </data>
+  <data name="SaveMenu.Title" xml:space="preserve">
+    <value>Vos sauvegardes :</value>
+    <comment> </comment>
+  </data>
+  <data name="Save.Info" xml:space="preserve">
+    <value>Résumé de la sauvegarde :</value>
+    <comment> </comment>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>Une erreur s'est produite. Veuillez redémarrer l'application.</value>
+    <comment> </comment>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Sélectionner tout</value>
+    <comment> </comment>
+  </data>
+  <data name="Save.Renamed" xml:space="preserve">
+    <value>La sauvegarde a été renommée avec succès !</value>
+    <comment/>
+  </data>
+  <data name="HomeMenu.Load" xml:space="preserve">
+    <value>Charger et exécuter les sauvegardes</value>
+    <comment> </comment>
+  </data>
 </root>

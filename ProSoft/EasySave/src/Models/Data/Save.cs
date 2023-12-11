@@ -50,7 +50,7 @@ namespace EasySave.src.Models.Data {
 
 
         public int CalculateProgress() {
-            return (int) (this._filesCopied / this.sourceDirectory.GetSize() * 100);
+            return (int)(this._sizeCopied / this.sourceDirectory.GetSize() * 100);
         }
 
 
@@ -82,7 +82,7 @@ namespace EasySave.src.Models.Data {
             LogsUtils.LogSaves();
         }
 
-        protected string Run() {
+        public string Run() {
             this.status = JobStatus.RUNNING;
             Stopwatch sw = new Stopwatch();
             sw.Start();

@@ -50,7 +50,10 @@ namespace EasySave.src.Utils {
                     new MultiSelectionPrompt<string>()
                         .Title(title)
                         .PageSize(10)
-                        .AddChoices(options)
+                        .InstructionsText(
+                            "[grey](Press [blue]<space>[/] to toggle a choice, [green]<enter>[/] to accept)[/]"
+                        )
+                        .AddChoiceGroup(Resource.SelectAll, options)
                     )
                 )
             );

@@ -210,7 +210,7 @@
     <comment/>
   </data>
   <data name="HomeMenu.Load" xml:space="preserve">
-    <value>Load a save</value>
+    <value>Load and Run backups</value>
     <comment/>
   </data>
   <data name="HomeMenu.Title" xml:space="preserve">
@@ -224,6 +224,30 @@
   <data name="Save.Undeleted" xml:space="preserve">
     <value>Delete save aborted!</value>
     <comment/>
+  </data>
+  <data name="Save.AlreadyRunning" xml:space="preserve">
+    <value>The save is already running</value>
+    <comment/>
+  </data>
+  <data name="Save.Execute" xml:space="preserve">
+    <value>Execute the save?</value>
+    <comment> </comment>
+  </data>
+  <data name="SaveMenu.Title" xml:space="preserve">
+    <value>Your saves:</value>
+    <comment> </comment>
+  </data>
+  <data name="Save.Info" xml:space="preserve">
+    <value>Backup summary:</value>
+    <comment> </comment>
+  </data>
+  <data name="Exception" xml:space="preserve">
+    <value>An error occured, please restart the application.</value>
+    <comment> </comment>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select all</value>
+    <comment> </comment>
   </data>
   <data name="Save.Renamed" xml:space="preserve">
     <value>Save renamed successfully!</value>

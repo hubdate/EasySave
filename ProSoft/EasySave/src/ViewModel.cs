@@ -29,6 +29,11 @@ namespace EasySave.src {
             return new HashSet<Save>(Save.GetSaves().Where(save => names.Contains(save.ToString())).ToList());
         }
 
+        public string RunSave(Save s)
+        {
+            return s.Run();
+        }
+
         /// <summary>
         /// Get all saves names
         /// </summary>
@@ -40,5 +45,6 @@ namespace EasySave.src {
                 data.Add(s.ToString());
             return data;
         }
+
     }
 }
