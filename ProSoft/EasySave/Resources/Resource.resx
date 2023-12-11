@@ -198,7 +198,7 @@
     <comment/>
   </data>
   <data name="HomeMenu.Edit" xml:space="preserve">
-    <value>Edit a save</value>
+    <value>Rename a save</value>
     <comment/>
   </data>
   <data name="HomeMenu.Load" xml:space="preserve">
@@ -240,5 +240,9 @@
   <data name="SelectAll" xml:space="preserve">
     <value>Select all</value>
     <comment> </comment>
+  </data>
+  <data name="Save.Renamed" xml:space="preserve">
+    <value>Save renamed successfully!</value>
+    <comment/>
   </data>
 </root>

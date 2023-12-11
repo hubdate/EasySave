@@ -60,6 +60,9 @@ namespace EasySave.src.Render {
                 case var value when value == Resource.HomeMenu_Delete:
                     RenderDeleteSave(PromptSave());
                     break;
+                case var value when value == Resource.HomeMenu_Edit:
+                    RenderEditSave(PromptSave());
+                    break;
                 case var value when value == Resource.HomeMenu_ChangeLanguage:
                     RenderChangeLanguage();
                     break;
@@ -70,7 +73,32 @@ namespace EasySave.src.Render {
             }
         }
 
-
+        private void RenderEditSave(HashSet<Save> saves)
+        {
+            if (saves.Count != 0)
+            {
+                //Get selected save
+                Save s = saves.Single();
+                string oldName = s.GetName();
+                //Ask for new name
+                string name = ConsoleUtils.Ask(Resource.CreateSave_Name);
+                _vm.EditSave(s, name);
+                ConsoleUtils.WriteJson(Resource.Confirm, new JsonText(LogsUtils.SaveToJson(s).ToString()));
+                //Ask to confirm
+                if (ConsoleUtils.AskConfirm())
+                {
+                    RenderHome($"[yellow]{Resource.Save_Renamed} ({s._uuid})[/]");
+                }
+                else
+                {
+                    //Get back old name
+                    _vm.EditSave(s, oldName);
+                    RenderHome();
+                }
+            }
+            else
+                RenderHome();
+        }
 
         private void RenderCreateSave() {
             if (Save.GetSaves().Count >= Save.MAX_SAVES) {
