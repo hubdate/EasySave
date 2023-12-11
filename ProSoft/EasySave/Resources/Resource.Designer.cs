@@ -1,6 +1,7 @@
 namespace EasySave.Resources {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Security.Cryptography.X509Certificates;
 
     public class Resource {
 
@@ -33,18 +34,6 @@ namespace EasySave.Resources {
         public static string Confirm {
             get {
                 return ResourceManager.GetString("Confirm", resourceCulture);
-            }
-        }
-
-        public static string Confirm_Yes {
-            get {
-                return ResourceManager.GetString("Confirm.Yes", resourceCulture);
-            }
-        }
-
-        public static string Confirm_No {
-            get {
-                return ResourceManager.GetString("Confirm.No", resourceCulture);
             }
         }
 
@@ -81,6 +70,12 @@ namespace EasySave.Resources {
         public static string CreateSave_SourcePath {
             get {
                 return ResourceManager.GetString("CreateSave.SourcePath", resourceCulture);
+            }
+        }
+
+        public static string Save_Renamed {
+            get {
+                return ResourceManager.GetString("Save.Renamed", resourceCulture);
             }
         }
 
@@ -162,9 +157,39 @@ namespace EasySave.Resources {
             }
         }
 
+        public static string Confirm_Yes {
+            get {
+                return ResourceManager.GetString("Confirm.Yes", resourceCulture);
+            }
+        }
+
+        public static string Confirm_No {
+            get {
+                return ResourceManager.GetString("Confirm.No", resourceCulture);
+            }
+        }
+
         public static string ChangeLanguage {
             get {
                 return ResourceManager.GetString("ChangeLanguage", resourceCulture);
+            }
+        }
+
+        public static string Save_Deleted {
+            get {
+                return ResourceManager.GetString("Save.Deleted", resourceCulture);
+            }
+        }
+
+        public static string Save_Undeleted {
+            get {
+                return ResourceManager.GetString("Save.Undeleted", resourceCulture);
+            }
+        }
+
+        public static string SaveMenu_Title {
+            get {
+                return ResourceManager.GetString("SaveMenu.Title", resourceCulture);
             }
         }
 
