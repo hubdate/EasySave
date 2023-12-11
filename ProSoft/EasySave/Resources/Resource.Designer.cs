@@ -1,6 +1,7 @@
 namespace EasySave.Resources {
     using System;
     using System.Runtime.CompilerServices;
+    using System.Security.Cryptography.X509Certificates;
 
     public class Resource {
 
@@ -69,6 +70,12 @@ namespace EasySave.Resources {
         public static string CreateSave_SourcePath {
             get {
                 return ResourceManager.GetString("CreateSave.SourcePath", resourceCulture);
+            }
+        }
+
+        public static string Save_Renamed {
+            get {
+                return ResourceManager.GetString("Save.Renamed", resourceCulture);
             }
         }
 
