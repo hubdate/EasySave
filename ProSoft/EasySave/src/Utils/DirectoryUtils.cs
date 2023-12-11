@@ -46,7 +46,7 @@ namespace EasySave.src.Utils {
 
                 // Update the json data
                 LogsUtils.LogSaves();
-                bool fileCopied = false;
+                bool fileCopied = true;
                 bool fileExists = File.Exists(Path.Combine(dst.FullName, file.FullName));
 
                 // Proceed differential mode by comparing files data
@@ -60,7 +60,6 @@ namespace EasySave.src.Utils {
                 ) {
                     _currentFile[0] = src.FullName;
                     _currentFile[1] = dst.FullName;
-                    Console.WriteLine($"{_currentFile[0]}   -   {_currentFile[1]}");
 
                     // Create a Stopwatch to measure the transfer time
                     var watch = new System.Diagnostics.Stopwatch();

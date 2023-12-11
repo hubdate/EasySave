@@ -41,7 +41,8 @@ namespace EasySave.src.Render {
             string action = ConsoleUtils.ChooseAction(
                 $"{Resource.HomeMenu_Title}", 
                 new HashSet<string>() {
-                    $"{Resource.HomeMenu_Create}", 
+                    $"{Resource.HomeMenu_Create}",
+                    $"{Resource.HomeMenu_Load}",
                     $"{Resource.HomeMenu_Edit}",
                     $"{Resource.HomeMenu_Delete}",
                     $"{Resource.HomeMenu_ChangeLanguage}",
@@ -52,12 +53,15 @@ namespace EasySave.src.Render {
                 case var value when value == Resource.HomeMenu_Create:
                     RenderCreateSave();
                     break;
-
-                case var value when value == Resource.HomeMenu_ChangeLanguage:
-                    RenderChangeLanguage();
+                case var value when value == Resource.HomeMenu_Load:
+                    RenderLoadSave(PromptSave(true));
                     break;
+
                 case var value when value == Resource.HomeMenu_Delete:
                     RenderDeleteSave(PromptSave());
+                    break;
+                case var value when value == Resource.HomeMenu_ChangeLanguage:
+                    RenderChangeLanguage();
                     break;
                 case var value when value == Resource.Forms_Exit:
                 default:
@@ -124,6 +128,37 @@ namespace EasySave.src.Render {
             RenderHome(message);
 
         }
+
+        private void RenderLoadSave(HashSet<Save> saves) {
+            if (saves.Count == 0) { RenderHome(); }
+            else {
+                foreach (Save s in saves) {
+                    try {
+                        if (s.GetStatus() != JobStatus.WAITING && s.GetStatus() != JobStatus.FINNISHED) 
+                        { RenderHome($"[red]{Resource.Save_AlreadyRunning}[/]"); }
+                        
+                        else
+                        {
+                            ConsoleUtils.WriteJson(Resource.Save_Execute, new JsonText(LogsUtils.SaveToJson(s).ToString()));
+                            if (ConsoleUtils.AskConfirm()) {
+                                ConsoleUtils.WriteJson(Resource.Save_Info, new JsonText(this._vm.RunSave(s)), Color.Green);
+                            }
+                            else {
+                                RenderHome();
+                            }
+                        }
+                    }
+                    catch
+                    {
+                        ConsoleUtils.WriteError($"{Resource.Exception}");
+                        Exit(-1);
+                    }
+                }
+            }
+            ConsoleUtils.AskConfirm(true);
+            RenderHome();
+        }
+
 
         private void RenderDeleteSave(HashSet<Save> saves)
         {
