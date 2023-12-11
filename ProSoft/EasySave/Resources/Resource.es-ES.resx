@@ -217,4 +217,44 @@
     <value>Elige una acción:</value>
     <comment/>
   </data>
+<data name="Save.Deleted" xml:space="preserve">
+    <value>Guardado eliminado exitosamente</value>
+    <comment/>
+</data>
+<data name="Save.Undeleted" xml:space="preserve">
+    <value>¡Eliminación del guardado abortada!</value>
+    <comment/>
+</data>
+<data name="Save.AlreadyRunning" xml:space="preserve">
+    <value>La guarda ya se está ejecutando</value>
+    <comment/>
+</data>
+<data name="Save.Execute" xml:space="preserve">
+    <value>¿Ejecutar la guarda?</value>
+    <comment> </comment>
+</data>
+<data name="SaveMenu.Title" xml:space="preserve">
+    <value>Tus guardados:</value>
+    <comment> </comment>
+</data>
+<data name="Save.Info" xml:space="preserve">
+    <value>Resumen de la copia de seguridad:</value>
+    <comment> </comment>
+</data>
+<data name="Exception" xml:space="preserve">
+    <value>Se ha producido un error, por favor, reinicie la aplicación.</value>
+    <comment> </comment>
+</data>
+<data name="SelectAll" xml:space="preserve">
+    <value>Seleccionar todo</value>
+    <comment> </comment>
+</data>
+<data name="Save.Renamed" xml:space="preserve">
+    <value>¡Guardado renombrado con éxito!</value>
+    <comment/>
+</data>
+<data name="HomeMenu.Load" xml:space="preserve">
+    <value>Cargar y ejecutar copias de seguridad</value>
+    <comment/>
+</data>
 </root>
