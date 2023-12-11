@@ -137,6 +137,14 @@
     <value>French</value>
     <comment/>
   </data>
+  <data name="Language.it-IT" xml:space="preserve">
+    <value>Italian</value>
+    <comment/>
+  </data>
+  <data name="Language.es-ES" xml:space="preserve">
+    <value>Spanish</value>
+    <comment/>
+  </data>
   <data name="Language.en-US" xml:space="preserve">
     <value>English</value>
     <comment/>

@@ -49,6 +49,18 @@ namespace EasySave.Resources {
             }
         }
 
+        public static string Language_it_IT {
+            get {
+                return ResourceManager.GetString("Language.it-IT", resourceCulture);
+            }
+        }
+
+        public static string Language_es_ES {
+            get {
+                return ResourceManager.GetString("Language.es-ES", resourceCulture);
+            }
+        }
+
         public static string Path_Invalid {
             get {
                 return ResourceManager.GetString("Path.Invalid", resourceCulture);

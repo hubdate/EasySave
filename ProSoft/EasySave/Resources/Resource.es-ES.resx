@@ -106,99 +106,115 @@
     </xsd:element>
   </xsd:schema>
   <resheader name="resmimetype">
-    <value>text/microsoft-resx</value>
+      <value>text/microsoft-resx</value>
   </resheader>
   <resheader name="version">
-    <value>2.0</value>
+      <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+      <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+      <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Confirm" xml:space="preserve">
-    <value>Est-ce correct ?</value>
-    <comment/>
+      <value>¿Es correcto?</value>
+      <comment/>
   </data>
   <data name="Confirm.Yes" xml:space="preserve">
-    <value>Oui</value>
-    <comment/>
+      <value>Sí</value>
+      <comment/>
   </data>
   <data name="Confirm.No" xml:space="preserve">
-    <value>Non</value>
-    <comment/>
+      <value>No</value>
+      <comment/>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
-    <value>Choisissez votre langue :</value>
-    <comment/>
+      <value>Elige tu idioma:</value>
+      <comment/>
   </data>
   <data name="Language.fr-FR" xml:space="preserve">
-    <value>Français</value>
-    <comment/>
+      <value>Francés</value>
+      <comment/>
   </data>
   <data name="Language.en-US" xml:space="preserve">
-    <value>Anglais</value>
-    <comment/>
+      <value>Inglés</value>
+      <comment/>
+  </data>
+  <data name="Language.it-IT" xml:space="preserve">
+      <value>Italiano</value>
+      <comment/>
+  </data>
+  <data name="Language.es-ES" xml:space="preserve">
+      <value>Español</value>
+      <comment/>
   </data>
   <data name="Path.Invalid" xml:space="preserve">
-    <value>Chemin incorrect |</value>
-    <comment/>
+      <value>Ruta incorrecta |</value>
+      <comment/>
   </data>
   <data name="CreateSave.MaxSaves" xml:space="preserve">
-    <value>Trop de sauvegardes ont déjà été créées</value>
-    <comment/>
+      <value>Ya se han creado demasiadas copias de seguridad</value>
+      <comment/>
   </data>
   <data name="CreateSave.Name" xml:space="preserve">
-    <value>Entrez le nom de la sauvegarde :</value>
-    <comment/>
+      <value>Ingresa el nombre de la copia de seguridad:</value>
+      <comment/>
   </data>
   <data name="CreateSave.SourcePath" xml:space="preserve">
-    <value>Entrez le chemin source de la sauvegarde :</value>
-    <comment/>
+      <value>Ingresa la ruta de origen de la copia de seguridad:</value>
+      <comment/>
   </data>
   <data name="CreateSave.DestinationPath" xml:space="preserve">
-    <value>Entrez le chemin de destination de la sauvegarde :</value>
-    <comment/>
+      <value>Ingresa la ruta de destino de la copia de seguridad:</value>
+      <comment/>
   </data>
   <data name="CreateSave.Type" xml:space="preserve">
-    <value>Choisissez le type de sauvegarde :</value>
-    <comment/>
+      <value>Elige el tipo de copia de seguridad:</value>
+      <comment/>
   </data>
   <data name="CreateSave.Type.Full" xml:space="preserve">
-    <value>Sauvegarde complète</value>
-    <comment/>
+      <value>Copia de seguridad completa</value>
+      <comment/>
   </data>
   <data name="CreateSave.Type.Differential" xml:space="preserve">
-    <value>Sauvegarde différentielle</value>
-    <comment/>
+      <value>Copia de seguridad diferencial</value>
+      <comment/>
   </data>
   <data name="CreateSave.Success" xml:space="preserve">
-    <value>Sauvegarde créée avec succès !</value>
-    <comment/>
+      <value>¡Copia de seguridad creada con éxito!</value>
+      <comment/>
   </data>
   <data name="Forms.Back" xml:space="preserve">
-    <value>Retour au menu</value>
-    <comment/>
+      <value>Volver al menú</value>
+      <comment/>
   </data>
   <data name="Forms.Exit" xml:space="preserve">
-    <value>Quitter</value>
-    <comment/>
+      <value>Salir</value>
+      <comment/>
   </data>
   <data name="HomeMenu.ChangeLanguage" xml:space="preserve">
-    <value>Changer de langue</value>
-    <comment/>
+      <value>Cambiar idioma</value>
+      <comment/>
   </data>
   <data name="HomeMenu.Create" xml:space="preserve">
-    <value>Créer une sauvegarde</value>
-    <comment/>
+      <value>Crear una copia de seguridad</value>
+      <comment/>
   </data>
   <data name="HomeMenu.Delete" xml:space="preserve">
-    <value>Supprimer une sauvegarde</value>
-    <comment/>
+      <value>Eliminar una copia de seguridad</value>
+      <comment/>
   </data>
   <data name="HomeMenu.Edit" xml:space="preserve">
-    <value>Renommer une sauvegarde</value>
+      <value>Renombrar una copia de seguridad</value>
+      <comment/>
+  </data>
+  <data name="HomeMenu.Load" xml:space="preserve">
+    <value>Choose an action:</value>
+    <comment/>
+  </data>
+  <data name="HomeMenu.Title" xml:space="preserve">
+    <value>Elige una acción:</value>
     <comment/>
   </data>
 </root>
