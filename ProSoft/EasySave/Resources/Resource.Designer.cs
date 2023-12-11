@@ -174,6 +174,12 @@ namespace EasySave.Resources {
             }
         }
 
+        public static string Save_Undeleted {
+            get {
+                return ResourceManager.GetString("Save.Undeleted", resourceCulture);
+            }
+        }
+
         public static string SaveMenu_Title {
             get {
                 return ResourceManager.GetString("SaveMenu.Title", resourceCulture);

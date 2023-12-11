@@ -12,11 +12,9 @@ using System.Threading;
 
 using Spectre.Console.Json;
 using Spectre.Console;
-using Spectre.Console.Json;
 
 using EasySave.src.Utils;
 using System.ComponentModel;
-using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 
 namespace EasySave.src.Render {
@@ -33,25 +31,6 @@ namespace EasySave.src.Render {
         public void Start() {
             Console.OutputEncoding = Encoding.UTF8;
             RenderHome();
-        }
-
-        private void Render(RenderMethod method = RenderMethod.Home)
-        {
-            switch (method)
-            {
-                case RenderMethod.CreateSave:
-                    RenderCreateSave();
-                    break;
-                case RenderMethod.DeleteSave:
-                    RenderDeleteSave(PromptSave());
-                    break;
-                case RenderMethod.ChangeLanguage:
-                    RenderChangeLanguage();
-                    break;
-                default:
-                    RenderHome();
-                    break;
-            }
         }
 
         private void RenderHome(string? message = null) {
@@ -78,7 +57,7 @@ namespace EasySave.src.Render {
                     RenderChangeLanguage();
                     break;
                 case var value when value == Resource.HomeMenu_Delete:
-                    RenderDeleteSave(Save.GetSaves());
+                    RenderDeleteSave(PromptSave());
                     break;
                 case var value when value == Resource.Forms_Exit:
                 default:
@@ -154,15 +133,16 @@ namespace EasySave.src.Render {
                 Save s = saves.Single();
                 ConsoleUtils.WriteJson(Resource.Confirm, new JsonText(LogsUtils.SaveToJson(s).ToString()));
                 //Ask confirm
+                string message;
                 if (ConsoleUtils.AskConfirm())
                 {
                     _vm.DeleteSave(s);
-                    RenderHome($"[red]{Resource.Save_Deleted}[/]");
+                    message = $"[green]{Resource.Save_Deleted}[/]";
                 }
-                else
-                {
-                    RenderHome();
+                else {
+                    message = $"[red]{Resource.Save_Undeleted}[/]";
                 }
+                RenderHome(message);
             }
             else
                 RenderHome();
