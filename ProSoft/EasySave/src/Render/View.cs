@@ -196,12 +196,24 @@ namespace EasySave.src.Render {
             string language = ConsoleUtils.ChooseAction(
                 $"{Resource.ChangeLanguage}", 
                 new HashSet<string>() {
-                    $"{Resource.Language_en_US}"
+                    $"{Resource.Language_en_US}",
+                    $"{Resource.Language_fr_FR}",
+                    $"{Resource.Language_it_IT}",
+                    $"{Resource.Language_es_ES}"
                 }, 
                 $"{Resource.Forms_Back}"
             );
             string culture = CultureInfo.CurrentCulture.ToString();
             switch (language) {
+                case var value when value == Resource.Language_fr_FR:
+                    culture = "fr-FR";
+                    break;
+                case var value when value == Resource.Language_it_IT:
+                    culture = "it-IT";
+                    break;
+                case var value when value == Resource.Language_es_ES:
+                    culture = "es-ES";
+                    break;
                 case var value when value == Resource.Language_en_US:
                     culture = "en-US";
                     break;

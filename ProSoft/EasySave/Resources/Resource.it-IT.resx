@@ -118,11 +118,11 @@
       <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Confirm" xml:space="preserve">
-      <value>¿Es correcto?</value>
+      <value>È corretto?</value>
       <comment/>
   </data>
   <data name="Confirm.Yes" xml:space="preserve">
-      <value>Sí</value>
+      <value>Sì</value>
       <comment/>
   </data>
   <data name="Confirm.No" xml:space="preserve">
@@ -130,75 +130,87 @@
       <comment/>
   </data>
   <data name="ChangeLanguage" xml:space="preserve">
-      <value>Elige tu idioma:</value>
+      <value>Scegli la tua lingua:</value>
       <comment/>
   </data>
   <data name="Language.fr-FR" xml:space="preserve">
-      <value>Francés</value>
+      <value>Francese</value>
       <comment/>
   </data>
   <data name="Language.en-US" xml:space="preserve">
-      <value>Inglés</value>
+      <value>Inglese</value>
+      <comment/>
+  </data>
+  <data name="Language.es-ES" xml:space="preserve">
+      <value>Spagnolo</value>
+      <comment/>
+  </data>
+  <data name="Language.it-IT" xml:space="preserve">
+      <value>Italiano</value>
       <comment/>
   </data>
   <data name="Path.Invalid" xml:space="preserve">
-      <value>Ruta incorrecta |</value>
+      <value>Percorso non corretto |</value>
       <comment/>
   </data>
   <data name="CreateSave.MaxSaves" xml:space="preserve">
-      <value>Ya se han creado demasiadas copias de seguridad</value>
+      <value>Troppe copie di backup sono già state create</value>
       <comment/>
   </data>
   <data name="CreateSave.Name" xml:space="preserve">
-      <value>Ingresa el nombre de la copia de seguridad:</value>
+      <value>Inserisci il nome del backup:</value>
       <comment/>
   </data>
   <data name="CreateSave.SourcePath" xml:space="preserve">
-      <value>Ingresa la ruta de origen de la copia de seguridad:</value>
+      <value>Inserisci il percorso di origine del backup:</value>
       <comment/>
   </data>
   <data name="CreateSave.DestinationPath" xml:space="preserve">
-      <value>Ingresa la ruta de destino de la copia de seguridad:</value>
+      <value>Inserisci il percorso di destinazione del backup:</value>
       <comment/>
   </data>
   <data name="CreateSave.Type" xml:space="preserve">
-      <value>Elige el tipo de copia de seguridad:</value>
+      <value>Scegli il tipo di backup:</value>
       <comment/>
   </data>
   <data name="CreateSave.Type.Full" xml:space="preserve">
-      <value>Copia de seguridad completa</value>
+      <value>Backup completo</value>
       <comment/>
   </data>
   <data name="CreateSave.Type.Differential" xml:space="preserve">
-      <value>Copia de seguridad diferencial</value>
+      <value>Backup differenziale</value>
       <comment/>
   </data>
   <data name="CreateSave.Success" xml:space="preserve">
-      <value>¡Copia de seguridad creada con éxito!</value>
+      <value>Backup creato con successo!</value>
       <comment/>
   </data>
   <data name="Forms.Back" xml:space="preserve">
-      <value>Volver al menú</value>
+      <value>Torna al menu</value>
       <comment/>
   </data>
   <data name="Forms.Exit" xml:space="preserve">
-      <value>Salir</value>
+      <value>Esci</value>
       <comment/>
   </data>
   <data name="HomeMenu.ChangeLanguage" xml:space="preserve">
-      <value>Cambiar idioma</value>
+      <value>Cambia lingua</value>
       <comment/>
   </data>
   <data name="HomeMenu.Create" xml:space="preserve">
-      <value>Crear una copia de seguridad</value>
+      <value>Crea un backup</value>
       <comment/>
   </data>
   <data name="HomeMenu.Delete" xml:space="preserve">
-      <value>Eliminar una copia de seguridad</value>
+      <value>Elimina un backup</value>
       <comment/>
   </data>
   <data name="HomeMenu.Edit" xml:space="preserve">
-      <value>Renombrar una copia de seguridad</value>
+      <value>Rinomina un backup</value>
       <comment/>
+  </data>
+  <data name="HomeMenu.Title" xml:space="preserve">
+    <value>Scegliere un'azione:</value>
+    <comment/>
   </data>
 </root>
