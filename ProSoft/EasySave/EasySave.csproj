@@ -1,26 +1,26 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <FileVersion>1.0.1</FileVersion>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Spectre.Console" Version="0.48.0" />
-    <PackageReference Include="Octokit" Version="5.0.0" />
-    <PackageReference Include="Spectre.Console.Json" Version="0.46.0" />
+    <Folder Include="Models\" />
+    <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
+
 
   <ItemGroup>
-    <Compile Update="Properties\Resource.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
+    <PackageReference Include="Avalonia" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.6" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.6" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.6" />
   </ItemGroup>
-
 </Project>
