@@ -5,6 +5,8 @@ using System.Windows.Input;
 using EasySave.Views;
 using Avalonia.Controls;
 
+namespace EasySave.ViewModels;
+
 public class MainWindowViewModel : INotifyPropertyChanged
 {
     private UserControl _currentView;
