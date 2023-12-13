@@ -1,0 +1,41 @@
+<UserControl x:Class="EasySave.Views.HomeView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:EasySave.ViewModels"
+             x:DataType="local:HomeViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450">
+<Grid>
+    <Grid>
+        <Image Source="/Assets/background.jpg" Stretch="UniformToFill">
+            <Image.Effect>
+                <BlurEffect Radius="45" />
+            </Image.Effect>
+            <Image.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#32000000" Offset="0.0" />
+                    <GradientStop Color="#32000000" Offset="1.0" />
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+    </Grid>
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="*" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+        <Panel Grid.Column="0" Grid.Row="0">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <TextBlock Text="EasySave" FontSize="70" Foreground="White" FontWeight="Bold" />
+                <TextBlock Text="The best backup software" FontSize="30" Foreground="White" />
+                <Button x:Name="CreateSaveButton" Command="{Binding MainWindowViewModel.ChangeViewCommand}" CommandParameter="CreateSave" Content="Create Save" Padding="10" Margin="0,150,0,0" Background="#FF811B"/>
+            </StackPanel>
+        </Panel>
+        <Image Grid.Column="1" Grid.Row="0" Source="/Assets/WelcomeTo.jpg" VerticalAlignment="Center"/>
+    </Grid>
+</Grid>
+</UserControl>
