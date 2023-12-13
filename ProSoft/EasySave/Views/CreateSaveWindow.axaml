@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="EasySave.Views.CreateSaveView">
+    <Grid>
+        <Image>
+            <Image.Effect>
+                <BlurEffect Radius="45" />
+            </Image.Effect>
+            <Image.OpacityMask>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#32000000" Offset="0.0" />
+                    <GradientStop Color="#32000000" Offset="1.0" />
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+    </Grid>
+</UserControl>
