@@ -1,8 +1,10 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="EasySave.Views.CreateSaveView">
+             x:Class="EasySave.Views.CreateSaveView"
+             xmlns:local="clr-namespace:EasySave.ViewModels"
+             x:DataType="local:CreateSaveWindowModel">
     <Grid>
-        <Image>
+        <Image Source="/Assets/background.jpg" Stretch="UniformToFill">
             <Image.Effect>
                 <BlurEffect Radius="45" />
             </Image.Effect>

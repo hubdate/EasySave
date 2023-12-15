@@ -1,11 +1,10 @@
 namespace EasySave.ViewModels;
 
-public class HomeViewModel : ViewModelBase
+public class CreateSaveWindowModel : ViewModelBase
 {
     public MainWindowViewModel MainWindowViewModel { get; set; }
-
-    public HomeViewModel(MainWindowViewModel mainWindowViewModel)
+    public CreateSaveWindowModel(MainWindowViewModel mainWindowViewModel)
     {
         MainWindowViewModel = mainWindowViewModel;
     }
-}
+}  
