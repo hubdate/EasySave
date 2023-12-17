@@ -10,6 +10,7 @@ public class MainWindowViewModel : ViewModelBase
     private readonly ViewModelBase[] Vues;
     
     public ReactiveCommand<Unit, Unit> CreateSaveCommand { get; }
+    public ReactiveCommand<Unit, Unit> HomeCommand { get; }
 
     public ViewModelBase CurrentViewModel
     {
@@ -28,10 +29,16 @@ public class MainWindowViewModel : ViewModelBase
         _currentViewModel = Vues[0];
 
         CreateSaveCommand = ReactiveCommand.Create(GoCreateSave);
+        HomeCommand = ReactiveCommand.Create(GoHome);
     }
 
     public void GoCreateSave()
     {
         CurrentViewModel = Vues[1];
+    }
+
+    public void GoHome()
+    {
+        CurrentViewModel = Vues[0];
     }
 }
