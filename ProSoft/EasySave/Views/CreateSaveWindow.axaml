@@ -67,7 +67,7 @@
             <ScrollViewer HorizontalScrollBarVisibility="Auto">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <!-- Button for file -->
-                    <Button Background="Transparent" BorderThickness="0">
+                    <Button Command="{Binding OpenFileExplorer}" Background="Transparent" BorderThickness="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                             <Image Source="/Assets/src_file.png" Width="150" Height="150"/>
                             <TextBlock Text="Fichier" HorizontalAlignment="Center" FontWeight="Bold"/>
@@ -75,7 +75,7 @@
                     </Button>
 
                     <!-- Button for disk -->
-                    <Button Background="Transparent" BorderThickness="0">
+                    <Button Command="{Binding OpenFolderExplorer}" Background="Transparent" BorderThickness="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                             <Image Source="/Assets/src_disk.png" Width="150" Height="150"/>
                             <TextBlock Text="Disque" HorizontalAlignment="Center" FontWeight="Bold"/>
@@ -83,7 +83,7 @@
                     </Button>
 
                     <!-- Button for OS -->
-                    <Button Background="Transparent" BorderThickness="0">
+                    <Button Command="{Binding OpenOSFolderExplorer}" Background="Transparent" BorderThickness="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                             <Image Source="/Assets/src_system.png" Width="150" Height="150"/>
                             <TextBlock Text="OS" HorizontalAlignment="Center" FontWeight="Bold"/>
@@ -91,7 +91,7 @@
                     </Button>
 
                     <!-- Button for App Data -->
-                    <Button Background="Transparent" BorderThickness="0">
+                    <Button Command="{Binding OpenAppDataFolderExplorer}" Background="Transparent" BorderThickness="0">
                         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0">
                             <Image Source="/Assets/src_appdata.png" Width="150" Height="150"/>
                             <TextBlock Text="Données Apps" HorizontalAlignment="Center" FontWeight="Bold"/>
