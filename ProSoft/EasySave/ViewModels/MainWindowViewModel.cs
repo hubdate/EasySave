@@ -1,11 +1,15 @@
 ﻿using System.Reactive;
 using ReactiveUI;
+using Avalonia.Controls;
+using Avalonia.Markup.Xaml;
+using System.Threading.Tasks;
 
 namespace EasySave.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel;
+    private readonly IDialogService _dialogService;
 
     private readonly ViewModelBase[] Vues;
     
@@ -18,14 +22,16 @@ public class MainWindowViewModel : ViewModelBase
         set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);
     }
 
-    public MainWindowViewModel()
+    public MainWindowViewModel(IDialogService dialogService, Window mainWindow)
     {
+        
         Vues = new ViewModelBase[]
         {
             new HomeViewModel(),
-            new CreateSaveViewModel()
+            new CreateSaveViewModel(dialogService, mainWindow)
         };
-        
+
+        _dialogService = dialogService;
         _currentViewModel = Vues[0];
 
         CreateSaveCommand = ReactiveCommand.Create(GoCreateSave);
@@ -42,3 +48,24 @@ public class MainWindowViewModel : ViewModelBase
         CurrentViewModel = Vues[0];
     }
 }
+
+public interface IDialogService
+{
+    Task<string[]> ShowOpenFileDialogAsync();
+}
+
+public class DialogService : IDialogService
+{
+    private readonly Window _window;
+
+    public DialogService(Window window)
+    {
+        _window = window;
+    }
+
+    public async Task<string[]> ShowOpenFileDialogAsync()
+    {
+        var dialog = new OpenFileDialog();
+        return await dialog.ShowAsync(_window);
+    }
+} 
