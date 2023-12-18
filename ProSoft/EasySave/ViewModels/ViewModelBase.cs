@@ -1,14 +1,7 @@
 ﻿using ReactiveUI;
-using System.ComponentModel;
 
 namespace EasySave.ViewModels;
 
-public class ViewModelBase : INotifyPropertyChanged
+public class ViewModelBase : ReactiveObject
 {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
-    protected void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }
-}   
+}

@@ -1,13 +1,13 @@
+using Avalonia;
 using Avalonia.Controls;
-using EasySave.ViewModels;
+using Avalonia.Markup.Xaml;
 
 namespace EasySave.Views;
 
 public partial class CreateSaveView : UserControl
 {
-    public CreateSaveView(MainWindowViewModel mainWindowViewModel)
+    public CreateSaveView()
     {
         InitializeComponent();
-        DataContext = mainWindowViewModel;
     }
 }

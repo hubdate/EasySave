@@ -1,98 +1,44 @@
-﻿using System;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using EasySave.Views;
-using Avalonia.Controls;
-using System.Diagnostics;
+﻿using System.Reactive;
+using ReactiveUI;
 
 namespace EasySave.ViewModels;
 
-public class MainWindowViewModel : INotifyPropertyChanged
+public class MainWindowViewModel : ViewModelBase
 {
-    private UserControl _currentView;
-    public UserControl CurrentView
-    {
-        get { return _currentView; }
-        set
-        {
-            if (_currentView != value)
-            {
-                _currentView = value;
-                //Console.WriteLine("CurrentView set from: " + new StackTrace());
-                OnPropertyChanged();
-            }
-        }
-    }
+    private ViewModelBase _currentViewModel;
 
-    public ICommand ChangeViewCommand { get; set; }
+    private readonly ViewModelBase[] Vues;
+    
+    public ReactiveCommand<Unit, Unit> CreateSaveCommand { get; }
+    public ReactiveCommand<Unit, Unit> HomeCommand { get; }
+
+    public ViewModelBase CurrentViewModel
+    {
+        get => _currentViewModel;
+        set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);
+    }
 
     public MainWindowViewModel()
     {
-        // Set the initial view
-        CurrentView = new HomeView(this);
-        // Initialize the command
-        ChangeViewCommand = new RelayCommand(ChangeView);
-    }
-
-    private void ChangeView(object viewNameObj)
-    {
-        string viewName = viewNameObj as string;
-        Console.WriteLine("Changing view to " + viewName);
-
-        if (viewName == null)
+        Vues = new ViewModelBase[]
         {
-            // Handle the case where viewNameObj is not a string
-            return;
-        }
-        switch (viewName)
-        {
-            case "View1":
-                CurrentView = new CreateSaveView(this);
-                break;
-            // Add more cases as needed for other views
-            default:
-                CurrentView = new HomeView(this);
-                break;
-        }
+            new HomeViewModel(),
+            new CreateSaveViewModel()
+        };
+        
+        _currentViewModel = Vues[0];
+
+        CreateSaveCommand = ReactiveCommand.Create(GoCreateSave);
+        HomeCommand = ReactiveCommand.Create(GoHome);
     }
 
-    // INotifyPropertyChanged implementation
-    public event PropertyChangedEventHandler PropertyChanged;
-    protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    public void GoCreateSave()
     {
-        // if (propertyName == nameof(CurrentView))
-        // {
-        //     Console.WriteLine("CurrentView property changed to " + CurrentView.GetType().Name);
-        //     ChangeView(propertyName);
-        // }
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-    }  
-}
-
-public class RelayCommand : ICommand
-{
-    private readonly Action<object> _execute;
-
-    public RelayCommand(Action<object> execute)
-    {
-        _execute = execute;
+        CurrentViewModel = Vues[1];
     }
 
-    public event EventHandler CanExecuteChanged;
-    
-    public void RaiseCanExecuteChanged()
+    public void GoHome()
     {
-        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-    }
-
-    public bool CanExecute(object parameter)
-    {
-        return true;
-    }
-
-    public void Execute(object parameter)
-    {
-        _execute(parameter);
+        CurrentViewModel = Vues[0];
     }
 }
