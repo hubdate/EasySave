@@ -1,0 +1,48 @@
+<UserControl x:Class="EasySave.Views.CreateSaveChoiceView"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:EasySave.ViewModels"
+             x:DataType="vm:CreateSaveChoiceViewModel">
+    <Grid>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
+        <!-- Title for action choices -->
+        <TextBlock Text="Sélectionner ce que vous voulez sauvegarder" HorizontalAlignment="Center" FontSize="19" Margin="0,-50,0,60"/>
+        
+        <!-- Action choice buttons arranged horizontally -->
+        <ScrollViewer HorizontalScrollBarVisibility="Auto">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <!-- Button for file -->
+                <Button Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveFileCommand}" Background="Transparent" BorderThickness="0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <Image Source="/Assets/src_file.png" Width="150" Height="150"/>
+                        <TextBlock Text="Fichier" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+                <!-- Button for disk -->
+                <Button Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveFolderCommand}" Background="Transparent" BorderThickness="0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <Image Source="/Assets/src_disk.png" Width="150" Height="150"/>
+                        <TextBlock Text="Disque" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+                <!-- Button for OS -->
+                <Button Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveOsCommand}" Background="Transparent" BorderThickness="0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
+                        <Image Source="/Assets/src_system.png" Width="150" Height="150"/>
+                        <TextBlock Text="OS" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+                <!-- Button for App Data -->
+                <Button Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveDataAppCommand}" Background="Transparent" BorderThickness="0">
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0">
+                        <Image Source="/Assets/src_appdata.png" Width="150" Height="150"/>
+                        <TextBlock Text="Données Apps" HorizontalAlignment="Center" FontWeight="Bold"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </ScrollViewer>
+    </StackPanel>
+    <!-- Button to cancel the action -->
+    <Button x:Name="GoHomeButton" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).HomeCommand}" Grid.Column="1" Content="Annuler" Background="Transparent"  HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" BorderBrush="Gray" BorderThickness="1" Width="100"/>
+    </Grid>
+</UserControl>        

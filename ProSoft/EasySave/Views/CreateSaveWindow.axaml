@@ -24,85 +24,69 @@
         </Grid.ColumnDefinitions>
 
         <!-- Left column content with a fixed height -->
-        <Border Background="#444953" Grid.Column="0" Height="100" VerticalAlignment="Top" Margin="20,100,0,0" CornerRadius="5">
-            <Grid>
-                <!-- Subdivide the left column into two parts: text and buttons -->
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
+        <DockPanel LastChildFill="True">
+            <!-- Bouton "Ajouter une Sauvegarde" -->
+            <Button DockPanel.Dock="Top" Background="#dcdcdb" Height="100" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Padding="0">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Border Background="{TemplateBinding Background}" CornerRadius="5">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="Ajouter une Sauvegarde" Foreground="#313131" Margin="0,0,0,10" FontSize="12" FontFamily="Segoe UI"/>
+                                <Image Source="/Assets/task_add_hov.png" Width="17" Height="17"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-                <!-- StackPanel for text content aligned to the left -->
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
-                    <!-- TextBlock aligned to the left without extra margin -->
-                    <TextBox Text="Nouvelle sauvegarde" IsReadOnly="{Binding IsTextReadOnly}" Foreground="#E5E5E5" Margin="15,10,0,0" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold">
-                        <TextBox.Styles>
-                            <Style Selector="TextBox[IsReadOnly=True]">
-                                <Setter Property="Background" Value="Transparent"/>
-                                <Setter Property="BorderBrush" Value="Transparent"/>
-                            </Style>
-                        </TextBox.Styles>
-                    </TextBox>
-                    <!-- <TextBlock Text="Nouvelle sauvegarde" Foreground="#E5E5E5" Margin="15,10,0,0" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold"/> -->
-                    <TextBlock Text="Sauvegarde prochaine" Foreground="#d1d8dc" Margin="15,15,0,0" FontSize="12" FontFamily="Segoe UI"/>
-                    <TextBlock Text="Pas de planification" Foreground="#d1d8dc" Margin="15,0,0,5" FontSize="12" FontFamily="Segoe UI"/>
-                </StackPanel>
 
-                <!-- Button and image aligned to the right -->
-                <Button Command="{Binding ToggleReadOnlyCommand}" Grid.Column="1" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
-                    <Image Source="/Assets/edit_item.png" Width="17" Height="17"/>
-                </Button>
+            <!-- Zone Sauvegarde Existante -->
+            <ScrollViewer Margin="0,0,0,0" VerticalScrollBarVisibility="Visible" HorizontalScrollBarVisibility="Visible">
+                <!-- Création du Template -->
+                <ItemsControl ItemsSource="{Binding Saves}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <!-- Template -->
+                            <Button Grid.Column="0" Height="100" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Padding="0" >
+                                <Button.Styles>
+                                    <Style Selector="Button /template/ ContentPresenter:pointerover">
+                                        <Setter Property="Background" Value="#444953"/>
+                                    </Style>
+                                </Button.Styles>
+                                <Border Background="#444953" CornerRadius="5">
+                                    <Grid>
+                                        <!-- Subdivide the left column into two parts: text and buttons -->
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
 
-                <!-- Image at the bottom-right -->
-                <Image Grid.Column="1" Source="/Assets/dst_local.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10"/>
-            </Grid>
-        </Border>
+                                        <!-- StackPanel for text content aligned to the left -->
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                            <!-- TextBlock aligned to the left without extra margin -->
+                                            <TextBox Text="{Binding Name}" Margin="15,10,0,0" FontSize="12" FontFamily="Segoe UI" FontWeight="Bold">
+                                            </TextBox>
+                                            <TextBlock Text="Dernière Sauvegarde" Foreground="#d1d8dc" Margin="15,30,0,0" FontSize="12" FontFamily="Segoe UI"/>
+                                            <!-- <TextBlock Text="{Binding LastSave}" Foreground="#d1d8dc" Margin="15,0,0,5" FontSize="12" FontFamily="Segoe UI"/> -->
+                                        </StackPanel>
 
-        <!-- Right column content for action choices -->
-        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
-            <!-- Title for action choices -->
-            <TextBlock Text="Sélectionner ce que vous voulez sauvegarder" HorizontalAlignment="Center" FontSize="19" Foreground="#dde1eb" Margin="0,-50,0,60"/>
-            
-            <!-- Action choice buttons arranged horizontally -->
-            <ScrollViewer HorizontalScrollBarVisibility="Auto">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <!-- Button for file -->
-                    <Button Command="{Binding OpenFileExplorer}" Background="Transparent" BorderThickness="0">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
-                            <Image Source="/Assets/src_file.png" Width="150" Height="150"/>
-                            <TextBlock Text="Fichier" HorizontalAlignment="Center" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Button>
+                                        <!-- Button Edit Save -->
+                                        <Button Grid.Column="1" Background="Transparent" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="10">
+                                            <Image Source="/Assets/edit_item.png" Width="17" Height="17"/>
+                                        </Button>
 
-                    <!-- Button for disk -->
-                    <Button Command="{Binding OpenFolderExplorer}" Background="Transparent" BorderThickness="0">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
-                            <Image Source="/Assets/src_disk.png" Width="150" Height="150"/>
-                            <TextBlock Text="Disque" HorizontalAlignment="Center" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Button for OS -->
-                    <Button Command="{Binding OpenOSFolderExplorer}" Background="Transparent" BorderThickness="0">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
-                            <Image Source="/Assets/src_system.png" Width="150" Height="150"/>
-                            <TextBlock Text="OS" HorizontalAlignment="Center" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Button>
-
-                    <!-- Button for App Data -->
-                    <Button Command="{Binding OpenAppDataFolderExplorer}" Background="Transparent" BorderThickness="0">
-                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,5,0">
-                            <Image Source="/Assets/src_appdata.png" Width="150" Height="150"/>
-                            <TextBlock Text="Données Apps" HorizontalAlignment="Center" FontWeight="Bold"/>
-                        </StackPanel>
-                    </Button>
-                </StackPanel>
+                                        <!-- Image PC -->
+                                        <Image Grid.Column="1" Source="/Assets/dst_local.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="50" Height="50" Margin="10"/>
+                                    </Grid>
+                                </Border>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
-        </StackPanel>
+        </DockPanel>
 
-        <!-- Button to cancel the action -->
-        <Button x:Name="GoHomeButton" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).HomeCommand}" Grid.Column="1" Content="Annuler" Background="Transparent" Foreground="#777d8c" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10" BorderBrush="Gray" BorderThickness="1" Width="100"/>
+        <ContentControl Grid.Column="1" Content="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).InsideViewModel}"/>
     </Grid>
     </Grid>
 

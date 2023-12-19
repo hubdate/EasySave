@@ -1,8 +1,12 @@
 using System.Reactive;
 using ReactiveUI;
 using Avalonia.Controls;
+using System.Collections.ObjectModel;
 using Avalonia;
 using System;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.IO;
 
 namespace EasySave.ViewModels;
 
@@ -11,6 +15,14 @@ public class CreateSaveViewModel : ViewModelBase
     private readonly IDialogService _dialogService;
     private readonly Window _mainWindow;
     private bool _isTextReadOnly = true;
+    public ReactiveCommand<Unit, Unit> ToggleReadOnlyCommand { get;}
+    public ObservableCollection<SaveModel> Saves { get; set; }
+    // Définir les propriétés pour accéder aux attributs de l'objet X
+    public string SaveName { get; set; }
+    public DateTime LastSave { get; set; }
+    public string DestFile { get; set; }
+    public string SourceFile { get; set; }
+    public string State { get; set; }
 
     public bool IsTextReadOnly
     {
@@ -22,13 +34,23 @@ public class CreateSaveViewModel : ViewModelBase
         }
     }
 
-    public ReactiveCommand<Unit, Unit> ToggleReadOnlyCommand { get;}
 
     public CreateSaveViewModel(IDialogService dialogService, Window mainWindow)
     {
         ToggleReadOnlyCommand = ReactiveCommand.Create(ToggleReadOnly);
         _dialogService = dialogService;
         _mainWindow = mainWindow;
+        Saves = new ObservableCollection<SaveModel>();
+
+        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        string fullPath = Path.Combine(appDataPath, "EasySave", "saves.json");
+        string json = File.ReadAllText(fullPath);
+        Dictionary<string, SaveModel> saves = JsonConvert.DeserializeObject<Dictionary<string, SaveModel>>(json);
+
+        foreach (KeyValuePair<string, SaveModel> entry in saves)
+        {
+            Saves.Add(new SaveModel { Name = entry.Value.Name, Dst = entry.Value.Dst, Src = entry.Value.Src, State = entry.Value.State });
+        }
     }
 
     private void ToggleReadOnly()
@@ -87,4 +109,15 @@ public class CreateSaveViewModel : ViewModelBase
             // Do something with the selected folder
         }
     }
+}
+
+public class SaveModel
+{
+    public string Name { get; set; }
+    public string Src { get; set; }
+    public string Dst { get; set; }
+    public string State { get; set; }
+    public string Type { get; set; }
+    public int TotalFiles { get; set; }
+    public double TotalSize { get; set; }
 }
