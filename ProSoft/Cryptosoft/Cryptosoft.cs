@@ -59,7 +59,7 @@ namespace ProSoft.Cryptosoft {
                     var read = fin.Read(buffer);
                     if (read == 0) { break; }
 
-                    for (var i = 0; i < read; i++) { buffer[i] ^= (byte)(buffer[i] ^__key[i % __key.Length]); }
+                    for (var i = 0; i < read; ++i) { buffer[i] ^= (byte)(__key[i % __key.Length]); }
                     fout.Write(buffer, 0, read);
                 }
                 __stopwatch.Stop();

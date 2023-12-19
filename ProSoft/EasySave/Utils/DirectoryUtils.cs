@@ -98,16 +98,19 @@ namespace EasySave.Utils {
                     foreach (var p in __process) {
                         Process[] processes = Process.GetProcessesByName(p.Split(".exe")[0].ToUpper());
                         if (processes.Length > 0 && s.GetStatus() == JobStatus.RUNNING) {
-                            // [TO DO] send notification process is running
+                            Console.WriteLine($"Process {p} is running, waiting for it to stop...");
                             s.Pause();
                             LogUtils.LogSaves();
+                            PauseTransfer();
                             Process head = processes[0];
                             if (head != null) {
                                 head.EnableRaisingEvents = true;
                                 head.Exited += (sender, e) => {
-                                    // [TO DO] send notification process is not running anymore
-                                    s.Resume();
-                                    // [TO DO] ResumeTransfer();
+                                    if (s.GetStatus() == JobStatus.PAUSED) {
+                                        Console.WriteLine($"Process {p} stopped, resuming save...");
+                                        s.Resume();
+                                        ResumeTransfer();
+                                    }
                                 };
                             }
                         }
