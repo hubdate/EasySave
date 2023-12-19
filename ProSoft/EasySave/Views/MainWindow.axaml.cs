@@ -9,7 +9,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        DataContext = new MainWindowViewModel();
+        var dialogService = new DialogService(this);
+        DataContext = new MainWindowViewModel(dialogService, this);
     }
     private void InitializeComponent()
     {
