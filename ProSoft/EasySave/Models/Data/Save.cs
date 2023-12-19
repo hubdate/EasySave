@@ -107,7 +107,7 @@ namespace EasySave.Models.Data {
                                         save.Element("name").Value.ToString(),
                                         save.Element("src").Value.ToString(),
                                         save.Element("dst").Value.ToString(),
-                                        Guid.Parse(save.Element("uuid").Value.ToString())
+                                        Guid.Parse(save.Attribute("uuid").Value.ToString())
                                     )
                                 );
                                 break;
@@ -119,8 +119,8 @@ namespace EasySave.Models.Data {
                                         save.Element("name").Value.ToString(),
                                         save.Element("src").Value.ToString(),
                                         save.Element("dst").Value.ToString(),
-                                        Guid.Parse(save.Element("uuid").Value.ToString()),
-                                        Save.GetStatus(save.Element("status").Value.ToString())
+                                        Guid.Parse(save.Attribute("uuid").Value.ToString()),
+                                        Save.GetStatus(save.Element("state").Value.ToString())
                                     )
                                 );
                                 break;
@@ -138,7 +138,7 @@ namespace EasySave.Models.Data {
                                         save.Value["name"].ToString(),
                                         save.Value["src"].ToString(),
                                         save.Value["dst"].ToString(),
-                                        Guid.Parse(save.Value["uuid"].ToString())
+                                        Guid.Parse(save.Name.ToString())
                                     )
                                 );
                                 break;
@@ -150,8 +150,8 @@ namespace EasySave.Models.Data {
                                         save.Value["name"].ToString(),
                                         save.Value["src"].ToString(),
                                         save.Value["dst"].ToString(),
-                                        Guid.Parse(save.Value["uuid"].ToString()),
-                                        Save.GetStatus(save.Value["status"].ToString())
+                                        Guid.Parse(save.Name.ToString()),
+                                        Save.GetStatus(save.Value["state"].ToString())
                                     )
                                 );
                                 break;

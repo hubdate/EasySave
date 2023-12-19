@@ -8,6 +8,8 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
+using EasySave.Models.Data;
+
 namespace EasySave.ViewModels;
 
 public class CreateSaveViewModel : ViewModelBase
@@ -42,14 +44,18 @@ public class CreateSaveViewModel : ViewModelBase
         _mainWindow = mainWindow;
         Saves = new ObservableCollection<SaveModel>();
 
-        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-        string fullPath = Path.Combine(appDataPath, "EasySave", "saves.json");
-        string json = File.ReadAllText(fullPath);
-        Dictionary<string, SaveModel> saves = JsonConvert.DeserializeObject<Dictionary<string, SaveModel>>(json);
+        // [Working] ]
+        foreach (Save s in Save.GetSaves()) {
+            Saves.Add(
+                new SaveModel {
+                    Name = s.GetName(),
+                    Dst = s.destinationDirectory.Path,
+                    Src = s.sourceDirectory.Path,
+                    State = s.GetStatus().ToString()
+                }
 
-        foreach (KeyValuePair<string, SaveModel> entry in saves)
-        {
-            Saves.Add(new SaveModel { Name = entry.Value.Name, Dst = entry.Value.Dst, Src = entry.Value.Src, State = entry.Value.State });
+                // [ TO DO ] Need to add the last save date
+            );
         }
     }
 
