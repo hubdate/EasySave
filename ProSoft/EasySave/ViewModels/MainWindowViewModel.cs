@@ -47,10 +47,10 @@ public class MainWindowViewModel : ViewModelBase
         InsideVues = new ViewModelBase[]
         {
             new CreateSaveChoiceViewModel(),
-            new CreateSaveDataAppViewModel(),
-            new CreateSaveFileViewModel(),
-            new CreateSaveFolderViewModel(),
-            new CreateSaveOsViewModel(),
+            new CreateSaveDataAppViewModel(dialogService, mainWindow),
+            new CreateSaveFileViewModel(dialogService, mainWindow),
+            new CreateSaveFolderViewModel(dialogService, mainWindow),
+            new CreateSaveOsViewModel(dialogService, mainWindow),
         };
 
         _dialogService = dialogService;

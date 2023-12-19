@@ -86,7 +86,7 @@
             </ScrollViewer>
         </DockPanel>
 
-        <ContentControl Grid.Column="1" Content="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).InsideViewModel}"/>
+        <ContentControl Grid.Column="1" HorizontalAlignment="Stretch" Content="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).InsideViewModel}"/>
     </Grid>
     </Grid>
 
