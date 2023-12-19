@@ -16,7 +16,6 @@ public class CreateSaveViewModel : ViewModelBase
 {
     private readonly IDialogService _dialogService;
     private readonly Window _mainWindow;
-    private bool _isTextReadOnly = true;
     public ReactiveCommand<Unit, Unit> ToggleReadOnlyCommand { get;}
     public ObservableCollection<SaveModel> Saves { get; set; }
     // Définir les propriétés pour accéder aux attributs de l'objet X
@@ -26,14 +25,11 @@ public class CreateSaveViewModel : ViewModelBase
     public string SourceFile { get; set; }
     public string State { get; set; }
 
-    public bool IsTextReadOnly
+    private bool _isEditable = true;
+    public bool IsEditable
     {
-        get { return _isTextReadOnly; }
-        set
-        {
-            _isTextReadOnly = value;
-            this.RaisePropertyChanged(nameof(IsTextReadOnly));
-        }
+        get { return _isEditable; }
+        set => this.RaiseAndSetIfChanged(ref _isEditable, value);
     }
 
     public CreateSaveViewModel(IDialogService dialogService, Window mainWindow)
@@ -57,10 +53,9 @@ public class CreateSaveViewModel : ViewModelBase
             );
         }
     }
-
-    private void ToggleReadOnly()
+    public void ToggleReadOnly()
     {
-        IsTextReadOnly = !IsTextReadOnly;
+        IsEditable = !IsEditable;
     }
 }
 public class SaveModel

@@ -10,7 +10,8 @@ public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel;
     private ViewModelBase _insideViewModel;
-    private readonly IDialogService _dialogService;
+    private IDialogService dialogService;
+    private Window mainWindow;
 
     private readonly ViewModelBase[] Vues;
     private readonly ViewModelBase[] InsideVues;
@@ -23,7 +24,8 @@ public class MainWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> CreateSaveOsCommand { get; }
     public ReactiveCommand<Unit, Unit> CreateSaveDataAppCommand { get; }
     public ReactiveCommand<Unit, Unit> CreateSaveChoiceCommand { get; }
-
+    public ReactiveCommand<object, Unit> CreateSaveExistCommand { get; }
+    public string saveName = "";
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
@@ -51,9 +53,10 @@ public class MainWindowViewModel : ViewModelBase
             new CreateSaveFileViewModel(dialogService, mainWindow),
             new CreateSaveFolderViewModel(dialogService, mainWindow),
             new CreateSaveOsViewModel(dialogService, mainWindow),
+            new CreateSaveExistViewModel(dialogService, mainWindow, saveName),
         };
 
-        _dialogService = dialogService;
+        this.dialogService = dialogService;
         _currentViewModel = Vues[0];
 
         _insideViewModel = InsideVues[0];
@@ -65,6 +68,7 @@ public class MainWindowViewModel : ViewModelBase
         CreateSaveOsCommand = ReactiveCommand.Create(GoCreateSaveOs);
         CreateSaveDataAppCommand = ReactiveCommand.Create(GoCreateSaveDataApp);
         CreateSaveChoiceCommand = ReactiveCommand.Create(GoCreateSaveChoice);
+        CreateSaveExistCommand = ReactiveCommand.Create<object>(GoCreateSaveExist);
     }
 
     public void GoHome()
@@ -100,6 +104,12 @@ public class MainWindowViewModel : ViewModelBase
     public void GoCreateSaveOs()
     {
         InsideViewModel = InsideVues[4];
+    }
+    public void GoCreateSaveExist(object parameter)
+    {
+        saveName = parameter as string;
+        InsideViewModel = new CreateSaveExistViewModel(dialogService, mainWindow, saveName);
+        // InsideViewModel = InsideVues[5];
     }
 }
 
