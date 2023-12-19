@@ -19,12 +19,12 @@
             <Image Source="/Assets/transfer.png" Width="220" Height="220" Margin="250,0,0,0"/>
             
             <!-- Bouton Central -->
-            <Button Background="Transparent" BorderThickness="0">
+            <Button Command="{Binding OpenFileExplorerCommand}" Background="Transparent" BorderThickness="0">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,-30,0">
                     <Image Source="/Assets/src_file.png" Width="250" Height="250"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                         <TextBlock Text="Mon Fichier" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,5"/>
-                        <TextBlock Text="Nom du fichier" HorizontalAlignment="Center" FontSize="12"/>
+                        <TextBlock Text="{Binding SourceFileName}" HorizontalAlignment="Center" FontSize="12"/>
                     </StackPanel>
                 </StackPanel>
             </Button>
@@ -40,12 +40,12 @@
                 </StackPanel>
                 <Image Source="/Assets/tips_arrow.png" Width="20" Height="20" Margin="0,10,0,10"/>
             </StackPanel>
-            <Button BorderThickness="0" Background="Transparent" HorizontalAlignment="Center">
+            <Button Command="{Binding OpenFolderExplorerCommand}" BorderThickness="0" Background="Transparent" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
                     <Image Source="/Assets/dst_local.png" Width="120" Height="120"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
                         <TextBlock Text="Emplacement Backup" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,0"/>
-                        <TextBlock Text="Espace restant / Total" HorizontalAlignment="Center" FontSize="12"/>
+                        <TextBlock Text="{Binding DestinationFileName} / Total" HorizontalAlignment="Center" FontSize="12"/>
                     </StackPanel>
                 </StackPanel>
             </Button>

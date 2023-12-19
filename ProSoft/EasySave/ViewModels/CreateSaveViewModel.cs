@@ -36,7 +36,6 @@ public class CreateSaveViewModel : ViewModelBase
         }
     }
 
-
     public CreateSaveViewModel(IDialogService dialogService, Window mainWindow)
     {
         ToggleReadOnlyCommand = ReactiveCommand.Create(ToggleReadOnly);
@@ -63,60 +62,7 @@ public class CreateSaveViewModel : ViewModelBase
     {
         IsTextReadOnly = !IsTextReadOnly;
     }
-
-    public async void OpenFileExplorer()
-    {
-        var result = await _dialogService.ShowOpenFileDialogAsync();
-
-        if (result != null)
-        {
-            // Do something with the selected files
-        }
-    }
-
-    public async void OpenFolderExplorer()
-    {
-        var dialog = new OpenFolderDialog
-        {
-            Directory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-        };
-        var result = await dialog.ShowAsync(_mainWindow);
-
-        if (result != null)
-        {
-            // Do something with the selected folder
-        }
-    }
-
-    public async void OpenOSFolderExplorer()
-    {
-        var dialog = new OpenFolderDialog
-        {
-            Directory = Environment.GetFolderPath(Environment.SpecialFolder.System)
-        };
-        var result = await dialog.ShowAsync(_mainWindow);
-
-        if (result != null)
-        {
-            // Do something with the selected folder
-        }
-    }
-
-    public async void OpenAppDataFolderExplorer()
-    {
-        var dialog = new OpenFolderDialog
-        {
-            Directory = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-        };
-        var result = await dialog.ShowAsync(_mainWindow);
-
-        if (result != null)
-        {
-            // Do something with the selected folder
-        }
-    }
 }
-
 public class SaveModel
 {
     public string Name { get; set; }
