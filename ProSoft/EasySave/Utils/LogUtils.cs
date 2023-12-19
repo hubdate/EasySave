@@ -52,8 +52,6 @@ namespace EasySave.Utils {
 
         public static void LogSaves() {
             __mutex.WaitOne();
-
-            Console.WriteLine(__format);
             switch (__format) {
                 case LogFormat.XML:
                     new XDocument(SavesToXML()).Save($"{path}saves.xml");
