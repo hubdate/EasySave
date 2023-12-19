@@ -26,18 +26,17 @@ namespace EasySave.Utils {
                 case var _ when File.Exists($"{path}saves.xml"):
                     __format = LogFormat.XML;
                     data = XDocument.Load($"{path}saves.xml");
+                    try { Save.Init(data); } catch { }
+                    LogSaves();
                     break;
 
                 case var _ when File.Exists($"{path}saves.json"):
                     __format = LogFormat.JSON;
                     data = JObject.Parse(File.ReadAllText($"{path}saves.json"));
+                    try { Save.Init(data); } catch { }
+                    LogSaves();
                     break;
-
-                default:
-                    throw new Exception("Invalid log format");
             }
-            try { Save.Init(data); } catch { }
-            LogSaves();
 
             if (!File.Exists($"{path}config.json")) {
                 HashSet<string> empty = new HashSet<string>();
