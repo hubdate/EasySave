@@ -15,7 +15,6 @@ using System.Xml.Linq;
 namespace EasySave.Models.Data {
     public abstract class Save : INotifyPropertyChanged {
         private static readonly HashSet<Save> __saves = new HashSet<Save>();
-
         private string __name;
         private long __fileCopied;
         private long __sizeCopied;
@@ -44,6 +43,18 @@ namespace EasySave.Models.Data {
             };
             __saves.Add(s);
             s.UpdateState();
+            return s;
+        }
+
+        public static Save CreateEmptySave() {
+            Save s = new FullSave(
+                "New save",
+                $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\ProSoft\EasySave",
+                $@"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\ProSoft\EasySave",
+                Guid.NewGuid());
+            __saves.Add(s);
+            s.OnPropertyChanged("Saves");
+
             return s;
         }
 
