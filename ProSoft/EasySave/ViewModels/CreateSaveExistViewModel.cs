@@ -11,6 +11,7 @@ using System.IO;
 using EasySave.Views;
 
 using EasySave.Models.Data;
+using System.Threading;
 
 namespace EasySave.ViewModels;
 
@@ -18,6 +19,9 @@ public class CreateSaveExistViewModel : ViewModelBase
 {
     private readonly IDialogService _dialogService;
     private readonly Window _mainWindow;
+
+    private Save __save;
+
     public SaveModel saveModel = new SaveModel();
     public string Name { get; set; }
     public string Dst { get; set; }
@@ -35,6 +39,8 @@ public class CreateSaveExistViewModel : ViewModelBase
         Dst = saveModel.Dst;
         Src = saveModel.Src;
         State = saveModel.State;
+
+        __save = Secret_GetSaveByName(saveName);
     }
 
     public async void OpenOsExplorer()
@@ -67,5 +73,20 @@ public class CreateSaveExistViewModel : ViewModelBase
         }
 
         return null; // Return null if no save with the provided name is found
+    }
+
+    public void RunSave() {
+        new Thread(() => { __save.Run(); }).Start();
+    }
+
+
+    private static Save Secret_GetSaveByName(string name) {
+        foreach (Save s in Save.GetSaves()) {
+            if (s.GetName() == name) {
+                return s;
+            }
+        }
+
+        return null;
     }
 }

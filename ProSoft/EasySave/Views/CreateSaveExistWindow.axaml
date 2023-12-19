@@ -57,7 +57,7 @@
         <!-- Bouton Bas -->
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,0,0,0">  
             <Button Grid.Column="1" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveChoiceCommand}" Content="Annuler" Background="Transparent" Foreground="#777d8c" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"  BorderBrush="Gray" BorderThickness="1" Width="100"/>
-            <Button Grid.Column="1" Content="Sauvegarder maintenant" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="180"/>
+            <Button Grid.Column="1" Command="{Binding RunSave}" Content="Sauvegarder maintenant" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="180"/>
         </StackPanel>
     </Grid>
 
