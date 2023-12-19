@@ -90,7 +90,7 @@ namespace EasySave.Utils {
 
             if (status != JobStatus.WAITING) {
                 string[] currentFile =  DirectoryUtils.GetCurrentFile();
-                data.fileLeft =         s.sourceDirectory.nbFiles - s.GetFilesCopied();
+                data.filesLeft =         s.sourceDirectory.nbFiles - s.GetFilesCopied();
                 data.sizeLeft =         s.sourceDirectory.GetSize() - s.GetSizeCopied();
                 data.currentTransfertSourcePath = currentFile[0];
                 data.currentTransfertDestinationPath = currentFile[1];
@@ -102,7 +102,7 @@ namespace EasySave.Utils {
 
 
         public static XElement SavesToXML() {
-            XElement root = new XElement("saves");
+            XElement root = new XElement("root");
             foreach (Save s in Save.GetSaves()) {
                 XElement saveData = SaveToXML(s);
                 root.Add(saveData);
@@ -126,7 +126,7 @@ namespace EasySave.Utils {
 
             if (status != JobStatus.WAITING) {
                 string[] currentFile =  DirectoryUtils.GetCurrentFile();
-                data.Add(new XElement("fileLeft", s.sourceDirectory.nbFiles - s.GetFilesCopied()));
+                data.Add(new XElement("filesLeft", s.sourceDirectory.nbFiles - s.GetFilesCopied()));
                 data.Add(new XElement("sizeLeft", s.sourceDirectory.GetSize() - s.GetSizeCopied()));
                 data.Add(new XElement("currentTransfertSourcePath", currentFile[0]));
                 data.Add(new XElement("currentTransfertDestinationPath", currentFile[1]));
@@ -198,11 +198,11 @@ namespace EasySave.Utils {
             LogSaves();
             switch (format) {
                 case LogFormat.XML:
-                    if (File.Exists($"{path}saves.xml")) { File.Delete($"{path}saves.xml"); }
+                    if (File.Exists($"{path}saves.json")) { File.Delete($"{path}saves.json"); }
                     break;
 
                 case LogFormat.JSON:
-                    if (File.Exists($"{path}saves.json")) { File.Delete($"{path}saves.json"); }
+                    if (File.Exists($"{path}saves.xml")) { File.Delete($"{path}saves.xml"); }
                     break;
 
                 default:
