@@ -39,7 +39,6 @@ public class CreateSaveViewModel : ViewModelBase
         _mainWindow = mainWindow;
         Saves = new ObservableCollection<SaveModel>();
 
-        // [Working] ]
         foreach (Save s in Save.GetSaves()) {
             Saves.Add(
                 new SaveModel {
@@ -48,8 +47,6 @@ public class CreateSaveViewModel : ViewModelBase
                     Src = s.sourceDirectory.Path,
                     State = s.GetStatus().ToString()
                 }
-
-                // [ TO DO ] Need to add the last save date
             );
         }
     }
