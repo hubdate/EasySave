@@ -3,6 +3,9 @@ using ReactiveUI;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using System.Threading.Tasks;
+using System;
+
+using EasySave.Models.Data;
 
 namespace EasySave.ViewModels;
 
@@ -12,6 +15,7 @@ public class MainWindowViewModel : ViewModelBase
     private ViewModelBase _insideViewModel;
     private IDialogService dialogService;
     private Window mainWindow;
+    private Save __save;
 
     private readonly ViewModelBase[] Vues;
     private readonly ViewModelBase[] InsideVues;
@@ -83,12 +87,17 @@ public class MainWindowViewModel : ViewModelBase
 
     public void GoCreateSaveChoice()
     {
+        //Call function to delete temp saves
+        Save.Delete(__save.uuid);
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
         InsideViewModel = InsideVues[0];
     }
     
     public void GoCreateSaveDataApp()
     {
-        InsideViewModel = InsideVues[1];
+        __save = Save.CreateEmptySave();
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
+        InsideViewModel = new CreateSaveDataAppViewModel(dialogService, mainWindow);
     }
     
     public void GoCreateSaveFile()

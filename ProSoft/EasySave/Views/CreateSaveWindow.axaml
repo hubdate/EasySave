@@ -26,7 +26,7 @@
         <!-- Left column content with a fixed height -->
         <DockPanel LastChildFill="True">
             <!-- Bouton "Ajouter une Sauvegarde" -->
-            <Button DockPanel.Dock="Top" Background="#dcdcdb" Height="100" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Padding="0">
+            <Button Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveChoiceCommand}" DockPanel.Dock="Top" Background="#dcdcdb" Height="100" Width="220" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" Padding="0">
                 <Button.Template>
                     <ControlTemplate>
                         <Border Background="{TemplateBinding Background}" CornerRadius="5">
