@@ -9,17 +9,30 @@ namespace EasySave.ViewModels;
 public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel;
+    private ViewModelBase _insideViewModel;
     private readonly IDialogService _dialogService;
 
     private readonly ViewModelBase[] Vues;
+    private readonly ViewModelBase[] InsideVues;
     
     public ReactiveCommand<Unit, Unit> CreateSaveCommand { get; }
     public ReactiveCommand<Unit, Unit> HomeCommand { get; }
+    public ReactiveCommand<Unit, Unit> SourceDestinationCommand { get; }
+    public ReactiveCommand<Unit, Unit> CreateSaveFileCommand { get; }
+    public ReactiveCommand<Unit, Unit> CreateSaveFolderCommand { get; }
+    public ReactiveCommand<Unit, Unit> CreateSaveOsCommand { get; }
+    public ReactiveCommand<Unit, Unit> CreateSaveDataAppCommand { get; }
+    public ReactiveCommand<Unit, Unit> CreateSaveChoiceCommand { get; }
 
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
         set => this.RaiseAndSetIfChanged(ref _currentViewModel, value);
+    }
+    public ViewModelBase InsideViewModel
+    {
+        get => _insideViewModel;
+        set => this.RaiseAndSetIfChanged(ref _insideViewModel, value);
     }
 
     public MainWindowViewModel(IDialogService dialogService, Window mainWindow)
@@ -28,24 +41,65 @@ public class MainWindowViewModel : ViewModelBase
         Vues = new ViewModelBase[]
         {
             new HomeViewModel(),
-            new CreateSaveViewModel(dialogService, mainWindow)
+            new CreateSaveViewModel(dialogService, mainWindow),
+        };
+
+        InsideVues = new ViewModelBase[]
+        {
+            new CreateSaveChoiceViewModel(),
+            new CreateSaveDataAppViewModel(),
+            new CreateSaveFileViewModel(),
+            new CreateSaveFolderViewModel(),
+            new CreateSaveOsViewModel(),
         };
 
         _dialogService = dialogService;
         _currentViewModel = Vues[0];
 
+        _insideViewModel = InsideVues[0];
+
         CreateSaveCommand = ReactiveCommand.Create(GoCreateSave);
         HomeCommand = ReactiveCommand.Create(GoHome);
-    }
-
-    public void GoCreateSave()
-    {
-        CurrentViewModel = Vues[1];
+        CreateSaveFileCommand = ReactiveCommand.Create(GoCreateSaveFile);
+        CreateSaveFolderCommand = ReactiveCommand.Create(GoCreateSaveFolder);
+        CreateSaveOsCommand = ReactiveCommand.Create(GoCreateSaveOs);
+        CreateSaveDataAppCommand = ReactiveCommand.Create(GoCreateSaveDataApp);
+        CreateSaveChoiceCommand = ReactiveCommand.Create(GoCreateSaveChoice);
     }
 
     public void GoHome()
     {
         CurrentViewModel = Vues[0];
+    }
+    
+    public void GoCreateSave()
+    {
+        CurrentViewModel = Vues[1];
+    }
+
+    public void GoCreateSaveChoice()
+    {
+        InsideViewModel = InsideVues[0];
+    }
+    
+    public void GoCreateSaveDataApp()
+    {
+        InsideViewModel = InsideVues[1];
+    }
+    
+    public void GoCreateSaveFile()
+    {
+        InsideViewModel = InsideVues[2];
+    }
+
+    public void GoCreateSaveFolder()
+    {
+        InsideViewModel = InsideVues[3];
+    }
+
+    public void GoCreateSaveOs()
+    {
+        InsideViewModel = InsideVues[4];
     }
 }
 
