@@ -53,7 +53,7 @@ public class CreateSaveFileViewModel : ViewModelBase
         };
         var result = await dialog.ShowAsync(_mainWindow);
 
-        if (result != null)
+        if (result != null && result.Length > 0)
         {
             SourceFileName = result[0];
         }
