@@ -25,15 +25,9 @@ sealed class Program
             Console.WriteLine("An instance of EasySave is already running.");
             Environment.Exit(-9);
         }
+        LogUtils.ChangeLogFormat(LogFormat.JSON);
         LogUtils.Init();
         
-        // Save.CreateSave(
-        //     "Save 1",
-        //     @"C:\Users\ProSoft\Desktop\src",
-        //     @"C:\Users\ProSoft\Desktop\dst",
-        //     SaveType.FULL
-        // );
-
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 
