@@ -8,7 +8,7 @@
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
                 <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
                 <TextBlock Text="Etat : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-                <TextBlock Text="zz" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+                <TextBlock Text="{Binding State}" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -16,12 +16,12 @@
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
                     <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
                     <TextBlock Text="Sauvegarde : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-                    <TextBlock Text="--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="{Binding Name}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
-                    <TextBlock Text="Vitesse : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-                    <TextBlock Text="--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="Progression : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="{Binding Progress}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
@@ -76,7 +76,7 @@
         <!-- Bouton Bas -->
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,0,0,0">  
             <Button Grid.Column="1" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveChoiceCommand}" Content="Annuler" Background="Transparent" Foreground="#777d8c" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"  BorderBrush="Gray" BorderThickness="1" Width="100"/>
-            <Button Grid.Column="1" Command="{Binding RunSave}" Content="Sauvegarder maintenant" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="180"/>
+            <Button Grid.Column="1" Command="{Binding RunSave}" Content="Lancer la procedure de sauvegarde" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="220"/>
         </StackPanel>
     </Grid>
 
