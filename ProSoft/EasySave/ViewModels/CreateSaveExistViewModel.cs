@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.IO;
 
+using System.ComponentModel;
+
+
 using EasySave.Views;
 
 using EasySave.Models.Data;
@@ -24,9 +27,19 @@ public class CreateSaveExistViewModel : ViewModelBase
 
     public SaveModel saveModel = new SaveModel();
     public string Name { get; set; }
+
+    private string __progress;
+    public string Progress {
+        get => __progress;
+        set => this.RaiseAndSetIfChanged(ref __progress, value);
+    }
     public string Dst { get; set; }
     public string Src { get; set; }
-    public string State { get; set; }
+    private string __state;
+    public string State {
+        get => __state;
+        set => this.RaiseAndSetIfChanged(ref __state, value);
+    }
     public ReactiveCommand<Unit, Unit> OpenOsExplorerCommand { get;}
 
     public CreateSaveExistViewModel(IDialogService dialogService, Window mainWindow, string saveName)
@@ -39,14 +52,13 @@ public class CreateSaveExistViewModel : ViewModelBase
         Dst = saveModel.Dst;
         Src = saveModel.Src;
         State = saveModel.State;
+        Progress = "--";
 
         __save = Secret_GetSaveByName(saveName);
     }
 
-    public async void OpenOsExplorer()
-    {
-        var dialog = new OpenFolderDialog
-        {
+    public async void OpenOsExplorer() {
+        var dialog = new OpenFolderDialog {
             Directory = Environment.GetFolderPath(Environment.SpecialFolder.Windows)
         };
         var result = await dialog.ShowAsync(_mainWindow);
@@ -77,6 +89,7 @@ public class CreateSaveExistViewModel : ViewModelBase
 
     public void RunSave() {
         new Thread(() => { __save.Run(); }).Start();
+        __save.PropertyChanged += Save_PropertyChanged;
     }
 
 
@@ -88,5 +101,19 @@ public class CreateSaveExistViewModel : ViewModelBase
         }
 
         return null;
+    }
+
+    private void Save_PropertyChanged(object sender, PropertyChangedEventArgs e) {
+        Save save = (Save)sender;
+        switch (e.PropertyName) {
+            case "SizeCopied":
+                UpdateProgress(save.CalculateProgress());
+                break;
+        }
+    }
+
+    public void UpdateProgress(int value) {
+        Progress = $"{value} %";
+        Console.WriteLine(Progress);
     }
 }
