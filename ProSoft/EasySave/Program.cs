@@ -28,6 +28,14 @@ sealed class Program
         LogUtils.ChangeLogFormat(LogFormat.JSON);
         LogUtils.Init();
         
+        // Save.CreateSave(
+        //     "Save 1",
+        //     @"C:\Users\esteb\OneDrive\Images\Cesi",
+        //     @"C:\Users\esteb\OneDrive\Images\Screenshots",
+        //     SaveType.FULL
+        // );
+
+
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 

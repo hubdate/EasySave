@@ -27,4 +27,11 @@
   <ItemGroup>
     <ProjectReference Include="..\CryptoSoft\CryptoSoft.csproj" />
   </ItemGroup>
+<<<<<<< Updated upstream
+=======
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+>>>>>>> Stashed changes
 </Project>
