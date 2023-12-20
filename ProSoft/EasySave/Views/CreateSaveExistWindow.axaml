@@ -4,12 +4,31 @@
              xmlns:vm="using:EasySave.ViewModels"
              x:DataType="vm:CreateSaveExistViewModel">
     <Grid>
-        <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
-            <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
-            <TextBlock Text="Dernière Sauvegarde : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-            <TextBlock Text="{Binding Name}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-            <TextBlock Text="   " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-            <TextBlock Text="{Binding State}" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+        <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
+                <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+                <TextBlock Text="Etat : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                <TextBlock Text="zz" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
+                    <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="Sauvegarde : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
+                    <TextBlock Text="Vitesse : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
+                    <TextBlock Text="Restant : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="--:--:--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                </StackPanel>
+            </StackPanel>
         </StackPanel>
 
 
