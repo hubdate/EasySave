@@ -4,17 +4,30 @@
              xmlns:vm="using:EasySave.ViewModels"
              x:DataType="vm:CreateSaveExistViewModel">
     <Grid>
+<<<<<<< Updated upstream
         <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
             <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
                 <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
                 <TextBlock Text="Etat : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                 <TextBlock Text="{Binding State}" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+=======
+        <DockPanel Grid.Column="1" LastChildFill="True">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" VerticalAlignment="Top" Margin="0,70,30,0">  
+                <Button Background="Transparent" VerticalAlignment="Center">
+                    <Image Source="/Assets/play.png" Width="20" Height="20"/>
+                </Button>
+                <Button Background="Transparent" VerticalAlignment="Center">
+                    <Image Source="/Assets/pause.png" Width="20" Height="20"/>
+                </Button>
+                <Button Background="Transparent" VerticalAlignment="Center">
+                    <Image Source="/Assets/stop.png" Width="20" Height="20"/>
+                </Button>
+>>>>>>> Stashed changes
             </StackPanel>
-
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
-
+            <StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
                     <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+<<<<<<< Updated upstream
                     <TextBlock Text="Sauvegarde : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                     <TextBlock Text="{Binding Name}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                 </StackPanel>
@@ -23,14 +36,32 @@
                     <TextBlock Text="Progression : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                     <TextBlock Text="{Binding Progress}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
                 </StackPanel>
+=======
+                    <TextBlock Text="Etat : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    <TextBlock Text="zz" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+                </StackPanel>
 
-                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
-                    <TextBlock Text="Restant : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-                    <TextBlock Text="--:--:--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top">
+>>>>>>> Stashed changes
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
+                        <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+                        <TextBlock Text="Sauvegarde : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                        <TextBlock Text="--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
+                        <TextBlock Text="Vitesse : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                        <TextBlock Text="--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="70,20,0,0">
+                        <TextBlock Text="Restant : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                        <TextBlock Text="--:--:--" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+                    </StackPanel>
                 </StackPanel>
             </StackPanel>
-        </StackPanel>
-
+        </DockPanel>
 
         <!-- Bouton Central + img transfer -->
         <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
@@ -40,7 +71,7 @@
             <!-- Bouton Central -->
             <Button Background="Transparent" BorderThickness="0">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,-30,0">
-                    <Image Source="/Assets/src_appdata.png" Width="250" Height="250"/>
+                    <Image Source="{Binding ImgSrc}" Width="250" Height="250"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                         <TextBlock Text="Mon Fichier" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,5"/>
                         <TextBlock Text="{Binding Src}" HorizontalAlignment="Center" FontSize="12"/>
@@ -74,9 +105,17 @@
         
 
         <!-- Bouton Bas -->
+        <Button Background="Transparent" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10">
+            <Image Source="/Assets/delete.png" Width="50" Height="50"/>
+        </Button>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,0,0,0">  
+<<<<<<< Updated upstream
             <Button Grid.Column="1" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveChoiceCommand}" Content="Annuler" Background="Transparent" Foreground="#777d8c" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"  BorderBrush="Gray" BorderThickness="1" Width="100"/>
             <Button Grid.Column="1" Command="{Binding RunSave}" Content="Lancer la procedure de sauvegarde" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="220"/>
+=======
+            <Button Grid.Column="1" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveChoiceCommand}" Content="Retour" Background="Transparent" Foreground="#777d8c" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"  BorderBrush="Gray" BorderThickness="1" Width="100"/>
+            <Button Grid.Column="1" Command="{Binding RunSave}" Content="Sauvegarder maintenant" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="180"/>
+>>>>>>> Stashed changes
         </StackPanel>
     </Grid>
 

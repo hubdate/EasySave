@@ -35,10 +35,19 @@ public class CreateSaveExistViewModel : ViewModelBase
     }
     public string Dst { get; set; }
     public string Src { get; set; }
+<<<<<<< Updated upstream
     private string __state;
     public string State {
         get => __state;
         set => this.RaiseAndSetIfChanged(ref __state, value);
+=======
+    public string State { get; set; }
+    private string __imgSrc = "src_disk.png";
+    public string ImgSrc
+    {
+        get => __imgSrc;
+        set => this.RaiseAndSetIfChanged(ref __imgSrc, value);
+>>>>>>> Stashed changes
     }
     public ReactiveCommand<Unit, Unit> OpenOsExplorerCommand { get;}
 
@@ -49,11 +58,28 @@ public class CreateSaveExistViewModel : ViewModelBase
         _mainWindow = mainWindow;
         Name = saveName;
         GetSaveByName(saveName);
-        Dst = saveModel.Dst;
-        Src = saveModel.Src;
+        Dst = saveModel.Dst != null && saveModel.Dst.Length > 40 ? "..." + saveModel.Dst.Substring(saveModel.Dst.Length - 40) : saveModel.Dst;
+        Src = saveModel.Src != null && saveModel.Src.Length > 40 ? "..." + saveModel.Src.Substring(saveModel.Src.Length - 40) : saveModel.Src;
         State = saveModel.State;
+<<<<<<< Updated upstream
         Progress = "--";
+=======
+        
+        
+        if (File.Exists(saveModel.Src))
+        {
+            Console.WriteLine("File exists");
+            ImgSrc = "/Assets/src_file.png";
+        } 
+        else
+        {
+            Console.WriteLine("Folder exist");
+            ImgSrc = "/Assets/src_disk.png";
+            // Console.WriteLine(ImgSrc);
+        }
+>>>>>>> Stashed changes
 
+        Console.WriteLine(ImgSrc);
         __save = Secret_GetSaveByName(saveName);
     }
 
