@@ -1,15 +1,15 @@
-<UserControl x:Class="EasySave.Views.CreateSaveFileView"
+<UserControl x:Class="EasySave.Views.CreateSaveExistView"
              xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:vm="using:EasySave.ViewModels"
-             x:DataType="vm:CreateSaveFileViewModel">
-        <Grid>
+             x:DataType="vm:CreateSaveExistViewModel">
+    <Grid>
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,20,0,0">
             <TextBlock Text="•" Foreground="#9fa2b5" Margin="0,0,15,0" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
             <TextBlock Text="Dernière Sauvegarde : " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-            <TextBlock Text="{Binding $parent[Window].((vm:SaveModel)DataContext).Name}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
+            <TextBlock Text="{Binding Name}" Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
             <TextBlock Text="   " Foreground="#9fa2b5" FontSize="12" FontFamily="Segoe UI"/>
-            <TextBlock Text="zz" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
+            <TextBlock Text="{Binding State}" Foreground="#203ef3" FontWeight="Bold" FontSize="12" FontFamily="Segoe UI"/>
         </StackPanel>
 
 
@@ -19,12 +19,13 @@
             <Image Source="/Assets/transfer.png" Width="220" Height="220" Margin="250,0,0,0"/>
             
             <!-- Bouton Central -->
-            <Button Command="{Binding OpenFileExplorerCommand}" Background="Transparent" BorderThickness="0">
+            <Button Background="Transparent" BorderThickness="0">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,-30,0">
-                    <Image Source="/Assets/src_file.png" Width="250" Height="250"/>
+                    <Image Source="/Assets/src_appdata.png" Width="250" Height="250"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,10,0">
                         <TextBlock Text="Mon Fichier" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,0,0,5"/>
-                        <TextBlock Text="{Binding SourceFileName}" HorizontalAlignment="Center" FontSize="12"/>
+                        <TextBlock Text="{Binding Src}" HorizontalAlignment="Center" FontSize="12"/>
+                        <!-- [ TO DO ] Adapt the width with the src lenght -->
                     </StackPanel>
                 </StackPanel>
             </Button>
@@ -40,12 +41,13 @@
                 </StackPanel>
                 <Image Source="/Assets/tips_arrow.png" Width="20" Height="20" Margin="0,10,0,10"/>
             </StackPanel>
-            <Button Command="{Binding OpenFolderExplorerCommand}" BorderThickness="0" Background="Transparent" HorizontalAlignment="Center">
+            <Button BorderThickness="0" Background="Transparent" HorizontalAlignment="Center">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0">
                     <Image Source="/Assets/dst_local.png" Width="120" Height="120"/>
                     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,20,0,0">
                         <TextBlock Text="Emplacement Backup" HorizontalAlignment="Center" FontWeight="Bold" Margin="0,10,0,0"/>
-                        <TextBlock Text="{Binding DestinationFileName} / Total" HorizontalAlignment="Center" FontSize="12"/>
+                        <TextBlock Text="{Binding Dst}" HorizontalAlignment="Center" FontSize="12"/>
+                        <!-- [ TO DO ] Adapt the width with the src lenght -->
                     </StackPanel>
                 </StackPanel>
             </Button>
@@ -55,7 +57,7 @@
         <!-- Bouton Bas -->
         <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10,0,0,0">  
             <Button Grid.Column="1" Command="{Binding $parent[Window].((vm:MainWindowViewModel)DataContext).CreateSaveChoiceCommand}" Content="Annuler" Background="Transparent" Foreground="#777d8c" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center"  BorderBrush="Gray" BorderThickness="1" Width="100"/>
-            <Button Grid.Column="1" Content="Sauvegarder maintenant" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="180"/>
+            <Button Grid.Column="1" Command="{Binding RunSave}" Content="Sauvegarder maintenant" Background="#fc8421" Foreground="#ffffff" HorizontalContentAlignment="Center" FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" Width="180"/>
         </StackPanel>
     </Grid>
 

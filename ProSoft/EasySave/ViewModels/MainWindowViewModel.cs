@@ -3,6 +3,9 @@ using ReactiveUI;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using System.Threading.Tasks;
+using System;
+
+using EasySave.Models.Data;
 
 namespace EasySave.ViewModels;
 
@@ -10,7 +13,9 @@ public class MainWindowViewModel : ViewModelBase
 {
     private ViewModelBase _currentViewModel;
     private ViewModelBase _insideViewModel;
-    private readonly IDialogService _dialogService;
+    private IDialogService dialogService;
+    private Window mainWindow;
+    private Save __save;
 
     private readonly ViewModelBase[] Vues;
     private readonly ViewModelBase[] InsideVues;
@@ -23,7 +28,8 @@ public class MainWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> CreateSaveOsCommand { get; }
     public ReactiveCommand<Unit, Unit> CreateSaveDataAppCommand { get; }
     public ReactiveCommand<Unit, Unit> CreateSaveChoiceCommand { get; }
-
+    public ReactiveCommand<object, Unit> CreateSaveExistCommand { get; }
+    public string saveName = "";
     public ViewModelBase CurrentViewModel
     {
         get => _currentViewModel;
@@ -51,9 +57,10 @@ public class MainWindowViewModel : ViewModelBase
             new CreateSaveFileViewModel(dialogService, mainWindow),
             new CreateSaveFolderViewModel(dialogService, mainWindow),
             new CreateSaveOsViewModel(dialogService, mainWindow),
+            new CreateSaveExistViewModel(dialogService, mainWindow, saveName),
         };
 
-        _dialogService = dialogService;
+        this.dialogService = dialogService;
         _currentViewModel = Vues[0];
 
         _insideViewModel = InsideVues[0];
@@ -65,6 +72,7 @@ public class MainWindowViewModel : ViewModelBase
         CreateSaveOsCommand = ReactiveCommand.Create(GoCreateSaveOs);
         CreateSaveDataAppCommand = ReactiveCommand.Create(GoCreateSaveDataApp);
         CreateSaveChoiceCommand = ReactiveCommand.Create(GoCreateSaveChoice);
+        CreateSaveExistCommand = ReactiveCommand.Create<object>(GoCreateSaveExist);
     }
 
     public void GoHome()
@@ -79,12 +87,17 @@ public class MainWindowViewModel : ViewModelBase
 
     public void GoCreateSaveChoice()
     {
+        //Call function to delete temp saves
+        Save.Delete(__save.uuid);
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
         InsideViewModel = InsideVues[0];
     }
     
     public void GoCreateSaveDataApp()
     {
-        InsideViewModel = InsideVues[1];
+        __save = Save.CreateEmptySave();
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
+        InsideViewModel = new CreateSaveDataAppViewModel(dialogService, mainWindow);
     }
     
     public void GoCreateSaveFile()
@@ -100,6 +113,12 @@ public class MainWindowViewModel : ViewModelBase
     public void GoCreateSaveOs()
     {
         InsideViewModel = InsideVues[4];
+    }
+    public void GoCreateSaveExist(object parameter)
+    {
+        saveName = parameter as string;
+        InsideViewModel = new CreateSaveExistViewModel(dialogService, mainWindow, saveName);
+        // InsideViewModel = InsideVues[5];
     }
 }
 
