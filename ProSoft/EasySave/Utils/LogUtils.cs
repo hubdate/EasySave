@@ -149,7 +149,7 @@ namespace EasySave.Utils {
             switch (__format) {
                 case LogFormat.XML:
                     transferInfo = new XElement(
-                        "transfert",
+                        "transfer",
                         new XElement("name", $"{s.GetName()} ({s.uuid})"),
                         new XElement("fileSource", sourcePath),
                         new XElement("fileTarget", destinationPath),
@@ -160,10 +160,10 @@ namespace EasySave.Utils {
                     );
 
                     dynamic data;
-                    if (File.Exists($"{path}data-{__date}.xml")) { data = XDocument.Load($"{path}data-{__date}.xml"); } 
+                    if (File.Exists($@"{path}data-{__date}.xml")) { data = XDocument.Load($@"{path}data-{__date}.xml"); } 
                     else { data = new XDocument( new XElement("transfers")); }
                     data.Element("transfers").Add(transferInfo);
-                    data.Save($"{path}data-{__date}.xml");
+                    data.Save($@"{path}data-{__date}.xml");
                     break;
 
                 case LogFormat.JSON:
@@ -191,7 +191,6 @@ namespace EasySave.Utils {
                     throw new Exception("Invalid log format");
             };
         }
-    
 
         public static void ChangeLogFormat(LogFormat format) {
             __format = format;
