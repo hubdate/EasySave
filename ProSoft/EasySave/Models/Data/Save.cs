@@ -59,7 +59,7 @@ namespace EasySave.Models.Data {
         }
 
         public int CalculateProgress() {
-            return (int)(__fileCopied / sourceDirectory.GetSize() * 100);
+            return Math.Min((int)(__sizeCopied / sourceDirectory.GetSize() * 100), 100);
         }
 
         public void Rename(string newName) {
