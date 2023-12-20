@@ -88,7 +88,7 @@ public class MainWindowViewModel : ViewModelBase
     public void GoCreateSaveChoice()
     {
         //Call function to delete temp saves
-        Save.Delete(__save.uuid);
+        try { Save.Delete(__save.uuid); } catch { }
         CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
         InsideViewModel = InsideVues[0];
     }
