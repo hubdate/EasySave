@@ -29,6 +29,7 @@ public class MainWindowViewModel : ViewModelBase
     public ReactiveCommand<Unit, Unit> CreateSaveDataAppCommand { get; }
     public ReactiveCommand<Unit, Unit> CreateSaveChoiceCommand { get; }
     public ReactiveCommand<object, Unit> CreateSaveExistCommand { get; }
+    public ReactiveCommand<object, Unit> ChangeNameCommand { get; }
     public string saveName = "";
     public ViewModelBase CurrentViewModel
     {
@@ -73,6 +74,7 @@ public class MainWindowViewModel : ViewModelBase
         CreateSaveDataAppCommand = ReactiveCommand.Create(GoCreateSaveDataApp);
         CreateSaveChoiceCommand = ReactiveCommand.Create(GoCreateSaveChoice);
         CreateSaveExistCommand = ReactiveCommand.Create<object>(GoCreateSaveExist);
+        ChangeNameCommand = ReactiveCommand.Create<object>(ChangeName);
     }
 
     public void GoHome()
@@ -88,7 +90,7 @@ public class MainWindowViewModel : ViewModelBase
     public void GoCreateSaveChoice()
     {
         //Call function to delete temp saves
-        Save.Delete(__save.uuid);
+        try {Save.Delete(__save.uuid);} catch {}
         CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
         InsideViewModel = InsideVues[0];
     }
@@ -102,23 +104,52 @@ public class MainWindowViewModel : ViewModelBase
     
     public void GoCreateSaveFile()
     {
-        InsideViewModel = InsideVues[2];
+        __save = Save.CreateEmptySave();
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
+        InsideViewModel = new CreateSaveFileViewModel(dialogService, mainWindow);
     }
 
     public void GoCreateSaveFolder()
     {
-        InsideViewModel = InsideVues[3];
+        __save = Save.CreateEmptySave();
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
+        InsideViewModel = new CreateSaveFolderViewModel(dialogService, mainWindow);
     }
 
     public void GoCreateSaveOs()
     {
-        InsideViewModel = InsideVues[4];
+        __save = Save.CreateEmptySave();
+        CurrentViewModel = new CreateSaveViewModel(dialogService, mainWindow);
+        InsideViewModel = new CreateSaveOsViewModel(dialogService, mainWindow);
     }
     public void GoCreateSaveExist(object parameter)
     {
         saveName = parameter as string;
+        Console.WriteLine(saveName);
         InsideViewModel = new CreateSaveExistViewModel(dialogService, mainWindow, saveName);
         // InsideViewModel = InsideVues[5];
+    }
+    public void ChangeName(object parameter)
+    {
+        string parameters = parameter as string;
+        string[] splitParameters = parameters.Split(',');
+
+        string saveName = splitParameters[0];
+        string name = splitParameters[1];
+
+        Console.WriteLine(saveName);
+        Secret_GetSaveByName(name).Rename(saveName);
+        InsideViewModel = new CreateSaveExistViewModel(dialogService, mainWindow, saveName);
+    }
+
+    private static Save Secret_GetSaveByName(string name) {
+        foreach (Save s in Save.GetSaves()) {
+            if (s.GetName() == name) {
+                return s;
+            }
+        }
+
+        return null;
     }
 }
 

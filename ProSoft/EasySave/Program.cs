@@ -27,6 +27,13 @@ sealed class Program
         }
         LogUtils.Init();
         
+        // Save.CreateSave(
+        //     "Save 1",
+        //     @"C:\Users\ProSoft\Desktop\src",
+        //     @"C:\Users\ProSoft\Desktop\dst",
+        //     SaveType.FULL
+        // );
+
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 
