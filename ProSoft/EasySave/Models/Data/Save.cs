@@ -10,6 +10,10 @@ using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Xml.Linq;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
+
 
 
 namespace EasySave.Models.Data {
@@ -93,6 +97,8 @@ namespace EasySave.Models.Data {
 
         public void Run() {
             _status = JobStatus.RUNNING;
+            
+            SocketUtils.StartServer(this);
             DirectoryUtils.CopyFilesAndFolders(this);
         }
 
