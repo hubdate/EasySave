@@ -115,7 +115,7 @@ namespace EasySave.Utils {
                             }
                         }
                     }
-                    __mre.WaitOne();
+                    mre.WaitOne();
 
                     bool fileCopied = true;
                     bool fileExists = File.Exists(Path.Combine(destinationFile.FullName));
