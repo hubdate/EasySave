@@ -125,7 +125,6 @@ public class MainWindowViewModel : ViewModelBase
     public void GoCreateSaveExist(object parameter)
     {
         saveName = parameter as string;
-        Console.WriteLine(saveName);
         InsideViewModel = new CreateSaveExistViewModel(dialogService, mainWindow, saveName);
         // InsideViewModel = InsideVues[5];
     }
@@ -137,7 +136,6 @@ public class MainWindowViewModel : ViewModelBase
         string saveName = splitParameters[0];
         string name = splitParameters[1];
 
-        Console.WriteLine(saveName);
         Secret_GetSaveByName(name).Rename(saveName);
         InsideViewModel = new CreateSaveExistViewModel(dialogService, mainWindow, saveName);
     }
