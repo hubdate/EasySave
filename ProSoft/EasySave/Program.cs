@@ -25,9 +25,9 @@ sealed class Program
             Console.WriteLine("An instance of EasySave is already running.");
             Environment.Exit(-9);
         }
-        LogUtils.ChangeLogFormat(LogFormat.JSON);
         LogUtils.Init();
-        
+        LogUtils.ChangeLogFormat(LogFormat.JSON);
+
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
 
