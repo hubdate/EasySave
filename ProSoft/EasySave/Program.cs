@@ -25,16 +25,8 @@ sealed class Program
             Console.WriteLine("An instance of EasySave is already running.");
             Environment.Exit(-9);
         }
-        LogUtils.ChangeLogFormat(LogFormat.JSON);
         LogUtils.Init();
-        
-        // Save.CreateSave(
-        //     "Save 1",
-        //     @"C:\Users\esteb\OneDrive\Images\Cesi",
-        //     @"C:\Users\esteb\OneDrive\Images\Screenshots",
-        //     SaveType.FULL
-        // );
-
+        LogUtils.ChangeLogFormat(LogFormat.JSON);
 
         BuildAvaloniaApp().StartWithClassicDesktopLifetime(args);
     }
