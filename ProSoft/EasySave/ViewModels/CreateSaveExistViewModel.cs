@@ -73,7 +73,6 @@ public class CreateSaveExistViewModel : ViewModelBase
         else                            { ImgSrc = "/Assets/src_disk.png"; }
 
         __save = Secret_GetSaveByName(saveName);
-        __save.PropertyChanged += Save_PropertyChanged;
 
         PauseButton_Click = ReactiveCommand.Create(PauseSave);
         ResumeButton_Click = ReactiveCommand.Create(ResumeSave);
@@ -154,7 +153,6 @@ public class CreateSaveExistViewModel : ViewModelBase
     private void ResumeSave() {
         __save.Resume();
         DirectoryUtils.ResumeTransfer();
-        Console.WriteLine(__save.GetStatus().ToString());
         Console.WriteLine("Save has been resumed");
     }
 
