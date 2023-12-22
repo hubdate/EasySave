@@ -49,7 +49,7 @@ public class CreateSaveFileViewModel : ViewModelBase
     {
         var dialog = new OpenFileDialog
         {
-
+            
         };
         var result = await dialog.ShowAsync(_mainWindow);
 

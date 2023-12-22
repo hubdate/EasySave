@@ -4,4 +4,7 @@ ProSoft/EasySave/bin/
 EasySave.sln
 ProSoft/Cryptosoft/obj/
 ProSoft/Cryptosoft/bin/
+
+ProSoft/EasySaveClient/obj/
+ProSoft/EasySaveClient/bin/
 ```
